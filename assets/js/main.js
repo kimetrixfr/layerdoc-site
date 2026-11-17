@@ -96,6 +96,21 @@
     });
   }
 
+  /* ---------- FAQ : « Voir plus de questions » / « Voir moins » ---------- */
+  var moreBtn = document.querySelector(".ld-more-btn");
+  var morePanel = document.getElementById("faq-more");
+  if (moreBtn && morePanel) {
+    moreBtn.addEventListener("click", function () {
+      var open = moreBtn.getAttribute("aria-expanded") !== "true";
+      morePanel.hidden = !open;
+      moreBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      if (!open) {
+        morePanel.querySelectorAll("details[open]").forEach(function (d) { d.open = false; });
+        moreBtn.scrollIntoView({ block: "nearest" });
+      }
+    });
+  }
+
   /* ---------- Formulaire Web3Forms ---------- */
   if (!form) return;
   var errorBox = document.getElementById("form-error");
