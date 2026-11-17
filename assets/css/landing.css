@@ -238,6 +238,11 @@
   font-weight: 600;
   font-size: 16px;
 }
+.landing .hero-8 {
+  margin: 0;
+  font-size: 14px;
+  color: var(--slate);
+}
 /* ---- 3. Aperçu produit ---- */
 .landing .prod-1 {
   max-width: 1120px;
@@ -2347,6 +2352,14 @@
   font-weight: 600;
 }
 .landing .offres-10 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  font-size: 13.5px;
+  color: var(--slate);
+}
+.landing .offres-11 {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -2355,11 +2368,11 @@
   gap: 8px;
   font-size: 15.5px;
 }
-.landing .offres-11 {
+.landing .offres-12 {
   flex: none;
   margin-top: 4px;
 }
-.landing .offres-12 {
+.landing .offres-13 {
   border: 2px solid var(--violet);
   border-radius: 16px;
   background: var(--white);
@@ -2369,13 +2382,13 @@
   gap: 14px;
   box-shadow: 0 24px 60px -30px rgba(91,61,245,.45);
 }
-.landing .offres-13 {
+.landing .offres-14 {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 10px;
 }
-.landing .offres-14 {
+.landing .offres-15 {
   padding: 2px 10px;
   border-radius: 999px;
   background: rgb(236, 232, 255);
@@ -2383,13 +2396,13 @@
   font-size: 12.5px;
   font-weight: 600;
 }
-.landing .offres-15 {
+.landing .offres-16 {
   font-size: 40px;
   font-weight: 700;
   letter-spacing: -.02em;
   line-height: 1.1;
 }
-.landing .offres-16 {
+.landing .offres-17 {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2400,12 +2413,20 @@
   text-decoration: none;
   font-weight: 600;
 }
-.landing .offres-17 {
+.landing .offres-18 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  font-size: 13.5px;
+  color: var(--slate);
+}
+.landing .offres-19 {
   font-size: 14px;
   font-weight: 600;
   color: var(--slate);
 }
-.landing .offres-18 {
+.landing .offres-20 {
   border: 1.5px solid var(--lavande-line);
   border-radius: 16px;
   background: #faf8ff;
@@ -2415,14 +2436,14 @@
   align-items: center;
   gap: 20px 40px;
 }
-.landing .offres-19 {
+.landing .offres-21 {
   flex: 1 1 340px;
   min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.landing .offres-20 {
+.landing .offres-22 {
   flex: 1 1 300px;
   min-width: 0;
   list-style: none;
@@ -2433,7 +2454,7 @@
   gap: 8px;
   font-size: 15.5px;
 }
-.landing .offres-21 {
+.landing .offres-23 {
   flex: none;
   display: inline-flex;
   align-items: center;
@@ -2446,7 +2467,7 @@
   text-decoration: none;
   font-weight: 600;
 }
-.landing .offres-22 {
+.landing .offres-24 {
   margin: 0;
   text-align: center;
   color: var(--slate);
@@ -2554,6 +2575,28 @@
   opacity: .92;
 }
 .landing .contact-6 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  padding-top: 4px;
+}
+.landing .contact-7 {
+  flex: 1 1 240px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.landing .contact-8 {
+  font-weight: 700;
+  font-size: 16px;
+}
+.landing .contact-9 {
+  font-size: 15px;
+  opacity: .92;
+}
+.landing .contact-10 {
   flex: 1 1 400px;
   min-width: 0;
   background: var(--white);
@@ -2561,24 +2604,24 @@
   border-radius: 16px;
   padding: clamp(20px, 2.6vw, 28px);
 }
-.landing .contact-7 {
+.landing .contact-11 {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
-.landing .contact-8 {
+.landing .contact-12 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: 14px;
 }
-.landing .contact-9 {
+.landing .contact-13 {
   display: flex;
   flex-direction: column;
   gap: 6px;
   font-size: 14px;
   font-weight: 600;
 }
-.landing .contact-10 {
+.landing .contact-14 {
   font: inherit;
   font-weight: 400;
   font-size: 16px;
@@ -2591,7 +2634,7 @@
   width: 100%;
   box-sizing: border-box;
 }
-.landing .contact-11 {
+.landing .contact-15 {
   font: inherit;
   font-weight: 400;
   font-size: 16px;
@@ -2604,7 +2647,7 @@
   box-sizing: border-box;
   resize: vertical;
 }
-.landing .contact-12 {
+.landing .contact-16 {
   display: flex;
   gap: 12px;
   align-items: flex-start;
@@ -2612,14 +2655,14 @@
   color: var(--slate);
   font-weight: 400;
 }
-.landing .contact-13 {
+.landing .contact-17 {
   flex: none;
   width: 20px;
   height: 20px;
   margin: 2px 0 0;
   accent-color: var(--violet);
 }
-.landing .contact-14 {
+.landing .contact-18 {
   align-self: flex-start;
   font: inherit;
   font-weight: 600;
@@ -2631,7 +2674,7 @@
   color: var(--white);
   cursor: pointer;
 }
-.landing .contact-15 {
+.landing .contact-19 {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2639,12 +2682,12 @@
   gap: 10px;
   padding: 24px 0;
 }
-.landing .contact-16 {
+.landing .contact-20 {
   font-family: 'Space Grotesk', 'IBM Plex Sans', sans-serif;
   font-weight: 700;
   font-size: 22px;
 }
-.landing .contact-17 {
+.landing .contact-21 {
   margin: 0;
   color: var(--slate);
 }
