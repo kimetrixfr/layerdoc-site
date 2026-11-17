@@ -66,6 +66,8 @@
   var MOTIF_TEXT = {
     "Standard": PREFILL.standard.text,
     "Démo Enterprise": PREFILL.demo.text,
+    "Programme pionniers": "Bonjour, je souhaite rejoindre le programme pionniers de Layerdoc. Voici mon contexte\u00a0: ",
+    "Dossier sécurité": "Bonjour, je souhaite recevoir le dossier sécurité de Layerdoc.",
     "Accompagnement": "Bonjour, je souhaite que vous documentiez mes données de A à Z. Voici mon contexte : ",
     "Autre": ""
   };
