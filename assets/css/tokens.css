@@ -43,6 +43,39 @@
   --danger-bg: #fde5df;
   --danger-fg: #a8351f;
 
+  /* Landing : neutres et surfaces ajoutés à partir de la maquette */
+  --slate-strong: #4b4864;
+  --on-dark-soft: #a9a6c4;
+  --tint-soft: #f3f0ff;
+  --lavande-line: #cfc7ff;
+  --btn-line: #d6d3e6;
+  --ok-tag-bg: #e3f4ec;
+  --violet-deep: #2a2455;
+  --violet-glow: #8b7bff;
+
+  /* Dégradé de l'IA : toujours bleu à gauche, rose-violet à droite, jamais animé */
+  --ai-from: #4f8cff;
+  --ai-to: #c35bf0;
+
+  /* Maquette produit en thème sombre (hero) */
+  --mock-bg: #12111c;
+  --mock-line: #2d2b45;
+  --mock-border: #2e2c42;
+
+  /* Illustrations des fonctionnalités : documentation fictive « Atelier Lumen », mode clair */
+  --lumen: #2fb59a;
+  --lumen-ink: #0b6b5a;
+  --lumen-orange: #f2a33a;
+  --ill-card: #f3f2fa;
+  --ill-bg: #f7f6fb;
+  --ill-ink: #1d1b2e;
+  --ill-text: #3d3a55;
+  --ill-muted: #6b6882;
+  --ill-faint: #65627d;
+  --ill-line: #dcdae8;
+  --ill-line-soft: #e6e4f0;
+  --ill-violet: #6d55e8;
+
   /* Typographie */
   --font-title: "Space Grotesk", "IBM Plex Sans", sans-serif;
   --font-text: "IBM Plex Sans", "Segoe UI", Arial, sans-serif;

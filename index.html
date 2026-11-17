@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Documentation du tracking et plan de marquage — Layerdoc</title>
-<meta name="description" content="Documentez votre tracking : plan de marquage, dataLayer, outils et consentement, site par site. Lisible par toute l'équipe, avec recherche et export PDF.">
+<title>Layerdoc : la documentation de vos données, lue par vos IA</title>
+<meta name="description" content="Layerdoc centralise votre connaissance data : plans de marquage, indicateurs, flux. Vos équipes et vos assistants IA y trouvent la bonne réponse, via MCP.">
 <meta name="theme-color" content="#5b3df5">
 <link rel="canonical" href="https://layerdoc.fr/">
 <link rel="icon" href="favicon.ico" sizes="32x32">
@@ -13,600 +13,608 @@
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Layerdoc">
 <meta property="og:url" content="https://layerdoc.fr/">
-<meta property="og:title" content="Documentation du tracking et plan de marquage — Layerdoc">
-<meta property="og:description" content="Une référence unique, lisible par toute l'équipe : ce que vos sites envoient, ce que chaque outil reçoit, avec quel consentement.">
-<meta property="og:image" content="https://layerdoc.fr/assets/img/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Layerdoc : la documentation de vos données collectées, lisible par toute l'équipe.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://layerdoc.fr/assets/img/og-image.png">
+<meta property="og:title" content="Layerdoc : la documentation de vos données, lue par vos IA">
+<meta property="og:description" content="Layerdoc centralise votre connaissance data : plans de marquage, indicateurs, flux. Vos équipes et vos assistants IA y trouvent la bonne réponse, via MCP.">
+<meta name="twitter:card" content="summary">
 <link rel="preload" href="assets/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/tokens.css">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/landing.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Layerdoc",
+    "url": "https://layerdoc.fr/",
+    "logo": "https://layerdoc.fr/assets/img/emblem.svg",
+    "description": "Layerdoc, un projet Kimetrix : la documentation de vos données, lue par vos équipes et utilisée par vos IA.",
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "Kimetrix"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Pourquoi Layerdoc plutôt qu'un autre outil de documentation ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Les autres concurrents stockent du texte ou cataloguent des données. Layerdoc propose des blocs conçus pour la data (flux, lignage, dictionnaire), une IA qui cite ses sources, et un accès MCP, le standard qui relie vos IA à vos outils, pour que vos IA lisent et mettent à jour la documentation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Qui rédige la documentation ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vous, avec l'éditeur sans code, ou nous, avec l'accompagnement Kimetrix. Dans les deux cas, vos équipes relisent avant publication."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Peut-on reprendre notre documentation existante ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui. Nous partons de vos plans de marquage, conteneurs GTM, wikis et tableurs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Faut-il savoir coder ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Non. L'éditeur sans code permet aux équipes non techniques de rédiger et de relire, sans toucher à un fichier."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Comment nos IA accèdent-elles à la documentation ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Par le serveur MCP, le standard qui relie vos IA à vos outils, compatible avec Claude, ChatGPT, Cursor ou tout client MCP. L'assistant intégré répond aussi à vos équipes, en citant les pages sources."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Layerdoc collecte-t-il des données sur mon site ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Non. Layerdoc documente votre configuration, il ne collecte rien. Aucune clé d'API ni secret n'y figure, seulement des identifiants de comptes et de pixels."
+        }
+      }
+    ]
+  }
+]
+</script>
 </head>
-<body>
-
-<!-- Sprite d'icônes -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
-  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
-  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></symbol>
-  <symbol id="i-sites" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 4v5M15 4v5"/></symbol>
-  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
-  <symbol id="i-sheet" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h4"/></symbol>
-  <symbol id="i-plan" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><circle cx="8" cy="9" r="1.6"/><circle cx="15" cy="13" r="1.6"/><path d="M8 21h8"/></symbol>
-  <symbol id="i-schema" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="6" rx="1.5"/><rect x="14" y="15" width="7" height="6" rx="1.5"/><path d="M6.5 9v4a2 2 0 0 0 2 2H14"/></symbol>
-  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
-  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></symbol>
-  <symbol id="i-write" viewBox="0 0 24 24"><path d="M4 20h4L17 11a2.8 2.8 0 0 0-4-4L4 16z"/><path d="M19 3l.7 1.8 1.8.7-1.8.7L19 8l-.7-1.8-1.8-.7 1.8-.7z"/></symbol>
-  <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4z"/><path d="M18 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></symbol>
-  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-5.4A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14.5h4"/></symbol>
-  <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 7V3M15 7V3M7 7h10v4a5 5 0 0 1-10 0z"/><path d="M12 16v5"/></symbol>
-  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></symbol>
-  <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1 0 1.5-.7 1.5-1.5 0-.4-.2-.8-.4-1.1-.3-.3-.4-.7-.4-1.1 0-.8.7-1.5 1.5-1.5H16a5 5 0 0 0 5-5c0-4.4-4-7.8-9-7.8z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7.5" r="1"/><circle cx="15" cy="7.5" r="1"/></symbol>
-  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
-  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M17 11l2 2 3.5-3.5"/></symbol>
-</svg>
-
+<body class="landing">
 <a class="skip-link" href="#contenu">Aller au contenu</a>
-
-<!-- 1. MENU -->
-<header class="site-header">
-  <div class="container site-header__inner">
-    <a class="brand" href="#top" aria-label="Layerdoc, retour en haut de page">
-      <svg width="30" height="30" viewBox="0 0 120 120" aria-hidden="true"><path d="M12 82 L60 108 L108 82" fill="none" stroke="#1a1830" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 62 L60 88 L108 62" fill="none" stroke="#b4a8ff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M60 16 L108 42 L60 68 L12 42 Z" fill="#5b3df5" stroke="#5b3df5" stroke-width="12" stroke-linejoin="round"/></svg>
-      <span class="brand__name">Layer<span>doc</span></span>
-    </a>
-    <button type="button" class="nav-toggle" id="nav-toggle" aria-controls="site-menu" aria-expanded="false" hidden>
-      <span class="nav-toggle__bars" aria-hidden="true"><i></i><i></i><i></i></span>
-      <span class="visually-hidden">Menu</span>
-    </button>
-    <div class="site-menu" id="site-menu">
-      <nav class="site-nav" aria-label="Navigation principale">
-        <a href="#fonctionnalites">Fonctionnalités</a>
-        <a href="#enterprise">Enterprise</a>
-        <a href="#offres">Offres</a>
-        <a href="#faq">FAQ</a>
-      </nav>
-      <div class="site-header__actions">
-        <!-- ⚠️ Libellé modifié (maquette : « Code source ») : le code n'est pas publié -->
-        <a class="btn btn--soft" href="#formulaire" data-prefill="waitlist" data-track="menu-liste-attente">Liste d'attente</a>
-        <a class="btn btn--primary btn--sm" href="#formulaire" data-prefill="demo" data-track="menu-demo">Échanger sur Enterprise</a>
-      </div>
-    </div>
-  </div>
-</header>
-
-<main id="contenu">
-
-<!-- 2. HERO -->
-<section id="top" class="hero container">
-  <!-- ⚠️ Badge adapté (maquette : « Open source · … ») : le code n'est pas encore publié -->
-  <span class="hero__badge">Open source à venir<span class="hero__badge-extra"> · Documentation du tracking</span></span>
-  <h1 class="hero__title">La documentation de votre tracking, <span>lisible par toute l'équipe.</span></h1>
-  <p class="hero__lead">Plan de marquage, dataLayer, Google Tag Manager, outils publicitaires, consentement&nbsp;: Layerdoc réunit dans une seule documentation ce que vos sites collectent et ce que chaque outil reçoit. Multi-sites, avec recherche et export PDF.</p>
-  <div class="hero__cta">
-    <!-- ⚠️ Libellé modifié (maquette : « Démarrer gratuitement ») -->
-    <a class="btn btn--primary btn--lg" href="#formulaire" data-prefill="waitlist" data-track="hero-liste-attente">Rejoindre la liste d'attente</a>
-    <a class="btn btn--dark btn--lg" href="#enterprise" data-track="hero-enterprise">Découvrir Enterprise <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-  </div>
-  <ul class="hero__points">
-    <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Version gratuite à venir, auto-hébergée</li>
-    <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Site statique&nbsp;: aucune donnée collectée</li>
-    <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Pensé pour les groupes multi-sites</li>
-  </ul>
-</section>
-
-<!-- Aperçu interactif -->
-<section class="preview container" aria-label="Aperçu de la documentation">
-  <div class="browser-stage" data-thumb>
-  <div class="browser">
-    <div class="browser__bar">
-      <div class="browser__dots" aria-hidden="true"><span></span><span></span><span></span></div>
-      <div class="browser__url">docs-tracking.maison-lumen.fr/google-ads</div>
-    </div>
-    <div class="browser__body">
-      <div class="doc-side">
-        <div class="doc-side__head"><strong>Maison Lumen</strong><span>Documentation du tracking</span></div>
-        <div class="doc-side__search" aria-hidden="true">Rechercher…</div>
-        <div class="doc-side__group"><span class="doc-side__label">Démarrer</span><span>Vue d'ensemble</span><span>Architecture</span></div>
-        <div class="doc-side__group"><span class="doc-side__label">dataLayer</span><span>Pages vues</span><span>Conversions</span><span>Formulaires</span></div>
-        <div class="doc-side__group"><span class="doc-side__label">Outils</span><span>Piano Analytics</span><span class="is-active">Google Ads</span><span>Meta Ads</span><span>Kameleoon</span></div>
-        <div class="doc-side__group"><span class="doc-side__label">Parcours</span><span>Page d'accueil</span><span>Prise de rendez-vous</span></div>
-      </div>
-      <div class="doc-main">
-        <div class="doc-main__crumb">Outils · Publicité</div>
-        <div class="doc-main__title">Google Ads</div>
-        <p class="doc-main__text">Plateforme publicitaire de Google. Elle mesure les conversions issues des campagnes payantes et alimente les audiences de remarketing.</p>
-        <dl class="facts">
-          <div><dt>Collecte</dt><dd>Navigateur + serveur</dd></div>
-          <div><dt>Consentement</dt><dd><span class="badge badge--c4">C0004 · Publicité</span></dd></div>
-          <div><dt>Données personnelles</dt><dd>E-mail et téléphone hachés</dd></div>
-          <div><dt>Compte</dt><dd><code>AW-000000000</code></dd></div>
-        </dl>
-        <div class="tabs" role="tablist" aria-label="Choisir un site" data-tabs>
-          <button type="button" role="tab" id="tab-fr" aria-controls="panel-fr" aria-selected="true">Lumen France</button>
-          <button type="button" role="tab" id="tab-be" aria-controls="panel-be" aria-selected="false" tabindex="-1">Lumen Belgique</button>
-          <button type="button" role="tab" id="tab-es" aria-controls="panel-es" aria-selected="false" tabindex="-1">Lumen Espagne</button>
-        </div>
-        <div class="table-wrap">
-          <div role="tabpanel" id="panel-fr" aria-labelledby="tab-fr">
-            <table class="events">
-              <thead><tr><th scope="col">Conversion</th><th scope="col">Événement dataLayer</th><th scope="col">Statut</th></tr></thead>
-              <tbody>
-                <tr><td>Prise de rendez-vous</td><td><code>appointment_confirmed</code></td><td><span class="badge badge--ok">Actif</span></td></tr>
-                <tr><td>Demande de devis</td><td><code>quote_request</code></td><td><span class="badge badge--ok">Actif</span></td></tr>
-                <tr><td>Conversions améliorées</td><td><code>user_data</code></td><td><span class="badge badge--ok">Actif</span></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div role="tabpanel" id="panel-be" aria-labelledby="tab-be" hidden>
-            <table class="events">
-              <thead><tr><th scope="col">Conversion</th><th scope="col">Événement dataLayer</th><th scope="col">Statut</th></tr></thead>
-              <tbody>
-                <tr><td>Prise de rendez-vous</td><td><code>appointment_confirmed</code></td><td><span class="badge badge--ok">Actif</span></td></tr>
-                <tr><td>Demande de devis</td><td><code>quote_request</code></td><td><span class="badge badge--ok">Actif</span></td></tr>
-                <tr><td>Conversions améliorées</td><td><code>user_data</code></td><td><span class="badge badge--ko">En pause</span></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div role="tabpanel" id="panel-es" aria-labelledby="tab-es" hidden>
-            <table class="events">
-              <thead><tr><th scope="col">Conversion</th><th scope="col">Événement dataLayer</th><th scope="col">Statut</th></tr></thead>
-              <tbody>
-                <tr><td>Prise de rendez-vous</td><td><code>appointment_confirmed</code></td><td><span class="badge badge--ok">Actif</span></td></tr>
-                <tr><td>Demande de devis</td><td><code>quote_request</code></td><td><span class="badge badge--warn">À vérifier</span></td></tr>
-                <tr><td>Conversions améliorées</td><td><code>user_data</code></td><td><span class="badge badge--ko">Inactif</span></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="doc-main__foot">État en production au 26/10/2026 · GTM web v441 · GTM serveur v87</div>
-      </div>
-    </div>
-  </div>
-  </div>
-  <p class="preview__note">Exemple fictif.<span class="preview__hint"> Cliquez sur un site&nbsp;: le tableau s'adapte.</span></p>
-  <ul class="preview__points">
-    <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Une fiche par outil</li>
-    <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Le consentement visible partout</li>
-    <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Un onglet par site</li>
-  </ul>
-</section>
-
-<!-- 3. CONSTAT -->
-<section class="band">
-  <div class="container stack-lg">
-    <div class="section-head section-head--narrow">
-      <span class="eyebrow">Le constat</span>
-      <h2 class="h2">Le tracking est partout, sauf au même endroit.</h2>
-    </div>
-    <div class="grid grid--260">
-      <article class="card card--pain">
-        <div class="card__tag">❌ Dans Google Tag Manager</div>
-        <h3>Des centaines de balises, lisibles par les seuls experts.</h3>
-        <p>Les équipes métier ne savent pas ce qui est réellement en production.</p>
-      </article>
-      <article class="card card--pain">
-        <div class="card__tag">❌ Dans un fichier Excel</div>
-        <h3>Un plan de marquage figé, rarement à jour.</h3>
-        <p>Il décrit ce qui était prévu à la recette, pas ce qui tourne aujourd'hui.</p>
-      </article>
-      <article class="card card--pain">
-        <div class="card__tag">❌ Dans la tête de quelqu'un</div>
-        <h3>Quand l'agence ou le consultant change, la connaissance part avec.</h3>
-        <p>Chaque nouvelle demande recommence par un audit.</p>
-      </article>
-    </div>
-    <div class="callout">
-      <svg class="icon" aria-hidden="true" style="stroke-width:2.6"><use href="#i-check"/></svg>
-      <p><strong>Layerdoc réunit tout dans une référence unique</strong>, qui documente l'état en production, daté et versionné, site par site, outil par outil.</p>
-    </div>
-  </div>
-</section>
-
-<!-- AUDIENCES -->
-<section class="container section stack-lg">
-  <div class="section-head section-head--narrow">
-    <span class="eyebrow">Pour qui</span>
-    <h2 class="h2">Une référence commune, une réponse par métier.</h2>
-    <p class="lead">Chaque page suit le même fil&nbsp;: du plus général au plus technique. Chacun s'arrête où il a sa réponse.</p>
-  </div>
-  <div class="grid grid--210" data-carousel data-carousel-label="Cinq métiers, faites défiler">
-    <article class="card card--plain"><h3>Produit &amp; développeurs</h3><p>«&nbsp;Quelles données dois-je pousser dans le dataLayer, et quand&#8239;?&nbsp;»</p></article>
-    <article class="card card--plain"><h3>Acquisition, agences &amp; consultants</h3><p>«&nbsp;Mon pixel est-il actif sur ce site, avec quelles conversions&#8239;?&nbsp;»</p></article>
-    <article class="card card--plain"><h3>CRO</h3><p>«&nbsp;Quels événements puis-je utiliser pour mes tests A/B&#8239;?&nbsp;»</p></article>
-    <article class="card card--plain"><h3>Data &amp; analytics</h3><p>«&nbsp;Quelle propriété, quelle valeur attendue, sur quelle page&#8239;?&nbsp;»</p></article>
-    <article class="card card--plain"><h3>Conformité &amp; DPO</h3><p>«&nbsp;Quel outil se déclenche, avec quel consentement&#8239;?&nbsp;»</p></article>
-  </div>
-</section>
-
-<!-- FONCTIONNALITÉS OPEN SOURCE -->
-<section id="fonctionnalites" class="container section section--tight-top stack-lg">
-  <div class="section-head section-head--narrow">
-    <span class="eyebrow">Inclus dans l'open source</span>
-    <h2 class="h2">Tout ce qu'il faut pour documenter, dès la version gratuite.</h2>
-  </div>
-  <div class="grid grid--250 grid--features">
-    <article class="feature"><svg class="icon" aria-hidden="true"><use href="#i-doc"/></svg><h3>Markdown, versionné dans Git</h3><p>Une page = un fichier. Le menu se construit tout seul, l'historique reste dans Git.</p></article>
-    <article class="feature"><svg class="icon" aria-hidden="true"><use href="#i-sites"/></svg><h3>Multi-sites natif</h3><p>Un onglet ou une colonne par site&nbsp;: les différences restent dans la même page. Le choix du site est mémorisé.</p></article>
-    <article class="feature"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><h3>Consentement visible partout</h3><p>Chaque outil et chaque événement porte son badge&nbsp;: exempté, performance ou publicité.</p></article>
-    <article class="feature"><svg class="icon" aria-hidden="true"><use href="#i-sheet"/></svg><h3>Fiches outils standardisées</h3><p>Même fil de lecture pour chaque outil&nbsp;: rôle, collecte, sites actifs, données envoyées, conformité.</p></article>
-    <article class="feature"><svg class="icon" aria-hidden="true"><use href="#i-plan"/></svg><h3>Plans de marquage par parcours</h3><p>Une capture repérée par des numéros et le tableau des événements, page par page.</p></article>
-    <article class="feature"><svg class="icon" aria-hidden="true"><use href="#i-schema"/></svg><h3>Schémas d'architecture</h3><p>Flux navigateur, serveur et consentement, lisibles en thème clair comme en sombre.</p></article>
-    <article class="feature"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><h3>Recherche instantanée</h3><p>Une page autonome par client, menu et recherche plein texte inclus.</p></article>
-    <article class="feature"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg><h3>Export PDF en un clic</h3><p>Une version imprimable avec couverture et sommaire, générée directement depuis la documentation.</p></article>
-  </div>
-</section>
-
-<!-- MARKDOWN -> RENDU -->
-<section class="container section section--tight-top" aria-labelledby="md-title">
-  <div class="md">
-    <div class="md__intro">
-      <h2 id="md-title" class="h2 h2--sm">Vous écrivez du texte. Layerdoc s'occupe du reste.</h2>
-      <p class="lead lead--sm">Le menu, la recherche, les badges de consentement et l'export PDF sont générés automatiquement à partir de vos pages.</p>
-    </div>
-    <ol class="md__steps">
-      <li><span class="steps__n">1</span><b>Vous écrivez une page</b></li>
-      <li><span class="steps__n">2</span><b>Layerdoc génère le site</b></li>
-      <li><span class="steps__n">3</span><b>Vous publiez</b></li>
-    </ol>
-    <details class="md__dev">
-      <summary>Pour les développeurs&nbsp;: les 3 commandes</summary>
-      <div class="cmds"><span>npm run new -- mon-client</span><span>npm run dev</span><span>npm run build</span></div>
-    </details>
-    <div class="md__pair">
-      <div class="md__code">
-        <div class="md__file">pages/meta-ads.md</div>
-<pre>---
-title: Meta Ads
-group: Outils
----
-
-::: meta
-- **Collecte** : navigateur + serveur
-- **Consentement** : C0004 Publicité
-:::</pre>
-      </div>
-      <div class="md__arrow" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></div>
-      <div class="browser-stage browser-stage--compact" data-thumb data-thumb-width="560">
-        <div class="browser browser--compact">
-          <div class="browser__bar">
-            <div class="browser__dots" aria-hidden="true"><span></span><span></span><span></span></div>
-            <div class="browser__url">docs-tracking.maison-lumen.fr/meta-ads</div>
-          </div>
-          <div class="browser__body">
-            <div class="doc-side">
-              <div class="doc-side__head"><strong>Maison Lumen</strong><span>Documentation du tracking</span></div>
-              <div class="doc-side__group"><span class="doc-side__label">Outils</span><span>Piano Analytics</span><span>Google Ads</span><span class="is-active">Meta Ads</span></div>
-            </div>
-            <div class="doc-main">
-              <div class="doc-main__crumb">Outils</div>
-              <div class="doc-main__title">Meta Ads</div>
-              <dl class="facts">
-                <div><dt>Collecte</dt><dd>Navigateur + serveur</dd></div>
-                <div><dt>Consentement</dt><dd><span class="badge badge--c4">C0004 · Publicité</span></dd></div>
-              </dl>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 4. ENTERPRISE -->
-<section id="enterprise" class="section--dark">
-  <div class="container ent">
-    <div class="ent__head">
-      <span class="eyebrow eyebrow--dark">Layerdoc Enterprise</span>
-      <h2 class="h2 h2--lg">La même documentation, prête pour toute l'organisation.</h2>
-      <p class="ent__lead">Rédigée avec l'IA, commentée en équipe, hébergée à vos couleurs et interrogeable par vos outils. Vos équipes et vos agences y trouvent la réponse sans vous solliciter.</p>
-      <!-- ⚠️ Libellé à valider avec Guillaume -->
-      <p class="ent__status"><span class="pill pill--warn">En cours de développement</span> Les fonctions Enterprise présentées ici sont en cours de conception. Les écrans sont des illustrations.</p>
-    </div>
-
-    <!-- 01 -->
-    <div class="group">
-      <div class="group__title"><span>01 · Rédiger et collaborer</span><i></i></div>
-      <div class="grid grid--330">
-        <article class="ecard">
-          <h3 class="ecard__title"><svg class="icon" aria-hidden="true" style="stroke-width:1.8"><use href="#i-write"/></svg>Rédaction assistée par IA</h3>
-          <p class="ecard__text">Dans l'éditeur sans code, décrivez en une phrase ce qu'il faut documenter. L'IA rédige la page et signale ce qu'elle ne peut pas confirmer. Vous relisez avant de publier.</p>
-          <div class="mock peek" style="--peek:195px" aria-hidden="true">
-            <div class="mock__bar"><span class="mock__crumb">Conversions / <strong>Prise de rendez-vous</strong></span><span class="pill">Brouillon</span></div>
-            <div class="mock__body">
-              <div class="prompt"><svg class="icon"><use href="#i-sparkle"/></svg><span>Explique l'événement de prise de rendez-vous en magasin</span><b>Rédiger</b></div>
-              <div class="ai-box">
-                <span class="ai-box__tag"><svg class="icon"><use href="#i-sparkle"/></svg>Proposition de l'IA</span>
-                <div class="ai-box__title">Prise de rendez-vous</div>
-                <p>Cet événement est envoyé quand un visiteur <strong>confirme son rendez-vous en magasin</strong>. Il mesure la conversion clé du site.</p>
-                <div class="chips"><span class="chip">Piano Analytics<span class="badge badge--ok">Exempté</span></span><span class="chip">Google Ads<span class="badge badge--c4">C0004</span></span></div>
-                <div class="todo"><strong>À vérifier&nbsp;:</strong> la date de mise en production de cet événement n'est pas indiquée dans vos sources.</div>
-              </div>
-              <div class="actions"><span class="actions__main">Insérer dans la page</span><span>Reformuler</span><span>Raccourcir</span><span>Régénérer</span></div>
-            </div>
-          </div>
-        </article>
-        <article class="ecard">
-          <h3 class="ecard__title"><svg class="icon" aria-hidden="true" style="stroke-width:1.8"><use href="#i-chat"/></svg>Commentaires et fils de discussion</h3>
-          <p class="ecard__text">Une question sur un passage&#8239;? Commentez-le dans la page. Votre équipe et vos agences répondent dans le même fil, qui se clôt une fois le sujet réglé.</p>
-          <div class="mock peek" style="--peek:150px" aria-hidden="true">
-            <div class="mock__bar"><span class="mock__crumb">Conversions / <strong>Prise de rendez-vous</strong></span><span class="pill pill--warn">1 fil ouvert</span></div>
-            <div class="mock__body mock__body--row">
-              <div class="thread-page">
-                <div class="ai-box__title">Prise de rendez-vous</div>
-                <p>Cet événement est envoyé quand un visiteur confirme son rendez-vous en magasin. Il mesure la conversion clé du site.</p>
-                <p>Il alimente Piano Analytics et <mark>Google Ads</mark>, qui attend le groupe <strong>C0004</strong>.</p>
-              </div>
-              <div class="thread">
-                <span class="thread__arrow"></span>
-                <div class="msg"><svg class="avatar" width="34" height="34" viewBox="0 0 34 34"><rect width="34" height="34" fill="#d8d0ff"/><circle cx="17" cy="13" r="6" fill="#5b3df5"/><path d="M5 34c0-7 5.5-11 12-11s12 4 12 11z" fill="#5b3df5"/></svg><div><div class="msg__who"><strong>Marie</strong><span>Agence média · il y a 2&nbsp;h</span></div><span>Cet événement part-il aussi vers Meta&#8239;?</span></div></div>
-                <div class="msg"><svg class="avatar" width="34" height="34" viewBox="0 0 34 34"><rect width="34" height="34" fill="#c9ecdd"/><circle cx="17" cy="13" r="6" fill="#0b6b4c"/><path d="M5 34c0-7 5.5-11 12-11s12 4 12 11z" fill="#0b6b4c"/></svg><div><div class="msg__who"><strong>Karim</strong><span>Data · il y a 1&nbsp;h</span></div><span><span class="mention">@Marie</span> Non, seulement Google Ads pour l'instant. Je complète la page.</span></div></div>
-                <div class="reply"><span>Répondre…</span><b>Résoudre</b></div>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-
-    <!-- 02 -->
-    <div class="group">
-      <div class="group__title"><span>02 · Interroger</span><i></i></div>
-      <div class="grid grid--330">
-        <article class="ecard">
-          <h3 class="ecard__title"><svg class="icon" aria-hidden="true" style="stroke-width:1.8"><use href="#i-sparkle"/></svg>Recherche assistée par IA</h3>
-          <p class="ecard__text">Posez une question en français. La réponse cite les pages sources, pour vérifier en un clic.</p>
-          <div class="mock mock--pad peek" style="--peek:148px" aria-hidden="true">
-            <div class="ask"><svg class="icon" style="color:var(--slate)"><use href="#i-search"/></svg>Quels outils se déclenchent sans consentement&#8239;?</div>
-            <p class="answer">Deux éléments sont <strong>exemptés</strong>&nbsp;: Piano Analytics, pour la mesure d'audience, et les balises techniques de Google Tag Manager. Toutes les plateformes publicitaires attendent le groupe <strong>C0004</strong>.</p>
-            <div class="sources"><span>Consentement</span><span>Piano Analytics</span><span>Google Tag Manager</span></div>
-          </div>
-        </article>
-        <article class="ecard">
-          <h3 class="ecard__title"><svg class="icon" aria-hidden="true" style="stroke-width:1.8"><use href="#i-plug"/></svg>Serveur MCP</h3>
-          <p class="ecard__text">Branchez votre documentation à Claude, ChatGPT, Cursor ou tout client compatible MCP. Vos assistants répondent à partir de votre tracking réel.</p>
-          <pre class="codebox" aria-label="Exemple de configuration MCP">"layerdoc": {
-  "url": "https://docs.votre-site.fr/mcp"
-}</pre>
-          <div class="chat peek peek--dark" style="--peek:105px" aria-hidden="true">
-            <div class="chat__user">Quel événement mesure la prise de rendez-vous&#8239;?</div>
-            <div class="chat__bot">L'événement <code>appointment_confirmed</code>, poussé à l'affichage de la confirmation. Il alimente Piano Analytics et Google Ads. <span>Source&nbsp;: Conversions</span></div>
-          </div>
-        </article>
-      </div>
-    </div>
-
-    <!-- 03 -->
-    <div class="group">
-      <div class="group__title"><span>03 · Diffuser à votre image</span><i></i></div>
-      <div class="grid grid--330">
-        <article class="ecard">
-          <h3 class="ecard__title"><svg class="icon" aria-hidden="true" style="stroke-width:1.8"><use href="#i-globe"/></svg>Hébergement au choix</h3>
-          <p class="ecard__text">Sur votre propre domaine grâce à un simple enregistrement CNAME, ou sur notre plateforme. HTTPS et mises à jour inclus.</p>
-          <div class="hosts">
-            <div class="host"><span>docs-tracking.votre-site.fr</span><b class="host__tag host__tag--ok">Votre domaine · CNAME</b></div>
-            <div class="host"><span>votre-marque.layerdoc.app</span><b class="host__tag">Hébergé par Layerdoc</b></div>
-          </div>
-        </article>
-        <article class="ecard">
-          <h3 class="ecard__title"><svg class="icon" aria-hidden="true" style="stroke-width:1.8"><use href="#i-palette"/></svg>Marque blanche</h3>
-          <p class="ecard__text">Votre logo, vos couleurs, votre typographie. La documentation devient un outil interne. Essayez&nbsp;:</p>
-          <div class="swatches" role="group" aria-label="Couleur de la marque" data-swatches>
-            <button type="button" class="swatch" data-color="#5b3df5" aria-label="Violet" aria-pressed="true" style="--c:#5b3df5"></button>
-            <button type="button" class="swatch" data-color="#0f766e" aria-label="Vert canard" aria-pressed="false" style="--c:#0f766e"></button>
-            <button type="button" class="swatch" data-color="#c2410c" aria-label="Orange brûlé" aria-pressed="false" style="--c:#c2410c"></button>
-            <button type="button" class="swatch" data-color="#1d4ed8" aria-label="Bleu" aria-pressed="false" style="--c:#1d4ed8"></button>
-            <button type="button" class="swatch" data-color="#be185d" aria-label="Framboise" aria-pressed="false" style="--c:#be185d"></button>
-          </div>
-          <div class="mock brand-mock peek" style="--peek:145px" data-brand-mock aria-hidden="true">
-            <div class="brand-mock__bar"><span class="brand-mock__logo"></span><b>Votre marque</b><span>Documentation du tracking</span></div>
-            <div class="brand-mock__body">
-              <div class="brand-mock__nav"><span>Vue d'ensemble</span><span class="is-active">Conversions</span><span>Consentement</span></div>
-              <div class="brand-mock__page"><div class="brand-mock__title">Conversions</div><i style="width:90%"></i><i style="width:70%"></i><span class="brand-mock__btn">Télécharger en PDF</span></div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-
-    <!-- 04 -->
-    <div class="group">
-      <div class="group__title"><span>04 · Organiser</span><i></i></div>
-      <article class="ecard ecard--wide">
-        <div class="ecard__side">
-          <h3 class="ecard__title"><svg class="icon" aria-hidden="true" style="stroke-width:1.8"><use href="#i-grid"/></svg>Hub multi-documentations</h3>
-          <p class="ecard__text">Votre organisation ne se gère pas d'un seul bloc&#8239;? Réunissez plusieurs documentations derrière une seule adresse&nbsp;: une par périmètre, chacune avec ses pages, ses règles et ses accès.</p>
-        </div>
-        <div class="hub peek peek--dark" style="--peek:100px" aria-hidden="true">
-          <div class="hub__item"><span>Documentation 1</span><b>Sites France</b><p>Collecte, consentement et parcours des sites principaux.</p></div>
-          <div class="hub__item"><span>Documentation 2</span><b>Sites export</b><p>Une documentation propre aux pays, avec ses particularités.</p></div>
-          <div class="hub__item"><span>Documentation 3</span><b>Sites BtoB</b><p>Gérée à part, avec ses propres règles et ses propres accès.</p></div>
-        </div>
-      </article>
-    </div>
-
-    <!-- 05 -->
-    <div class="group">
-      <div class="group__title"><span>05 · Gouverner</span><i></i></div>
-      <article class="ecard ecard--wide">
-        <div class="ecard__side">
-          <h3 class="ecard__title"><svg class="icon" aria-hidden="true" style="stroke-width:1.8"><use href="#i-user"/></svg>Gestion des accès</h3>
-          <p class="ecard__text">Connexion SSO, rôles lecteur, éditeur et administrateur. Une agence ne voit que les sites qu'elle gère.</p>
-        </div>
-        <div class="access mock peek" style="--peek:128px" aria-hidden="true">
-          <div class="mock__bar"><b>Accès à la documentation</b><span class="pill">Connexion SSO</span></div>
-          <div class="access__row"><svg class="avatar" width="30" height="30" viewBox="0 0 34 34"><rect width="34" height="34" fill="#d8d0ff"/><circle cx="17" cy="13" r="6" fill="#5b3df5"/><path d="M5 34c0-7 5.5-11 12-11s12 4 12 11z" fill="#5b3df5"/></svg><b>Marie · Agence média</b><span class="badge badge--violet">Lecteur</span><span class="access__scope">Sites France uniquement</span></div>
-          <div class="access__row"><svg class="avatar" width="30" height="30" viewBox="0 0 34 34"><rect width="34" height="34" fill="#c9ecdd"/><circle cx="17" cy="13" r="6" fill="#0b6b4c"/><path d="M5 34c0-7 5.5-11 12-11s12 4 12 11z" fill="#0b6b4c"/></svg><b>Karim · Data</b><span class="badge badge--ok">Éditeur</span><span class="access__scope">Toutes les documentations</span></div>
-          <div class="access__row"><svg class="avatar" width="30" height="30" viewBox="0 0 34 34"><rect width="34" height="34" fill="#ffd9b8"/><circle cx="17" cy="13" r="6" fill="#8a4200"/><path d="M5 34c0-7 5.5-11 12-11s12 4 12 11z" fill="#8a4200"/></svg><b>Sophie · Direction</b><span class="badge badge--c4">Administrateur</span><span class="access__scope">Toutes les documentations</span></div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- 5. ACCOMPAGNEMENT -->
-<section id="accompagnement" class="support">
-  <div class="container support__inner">
-    <div class="support__text">
-      <span class="eyebrow">Accompagnement</span>
-      <h2 class="h2">Pas le temps de documenter&#8239;? On le fait pour vous.</h2>
-      <p class="lead">Nous reprenons votre existant, rédigeons votre documentation de A à Z et la tenons à jour. Vous gardez la main sur la relecture.</p>
-      <p class="support__trust">Accompagnement assuré par Kimetrix, conseil en data analytics à Paris depuis 2017.</p>
-      <a class="btn btn--primary" href="#formulaire" data-prefill="project" data-track="accompagnement-projet">Parler de votre projet</a>
-    </div>
-    <ol class="steps">
-      <li><span class="steps__n">1</span><div><b>Reprise de l'existant</b><span>Plans de marquage, conteneurs GTM, tableurs&nbsp;: nous partons de ce que vous avez déjà.</span></div></li>
-      <li><span class="steps__n">2</span><div><b>Rédaction de A à Z</b><span>Pages, parcours, consentement&nbsp;: nous rédigeons et validons avec vos équipes.</span></div></li>
-      <li><span class="steps__n">3</span><div><b>Mise à jour continue</b><span>Quand le tracking évolue, la documentation suit.</span></div></li>
-    </ol>
-  </div>
-</section>
-
-<!-- 6. OFFRES -->
-<section id="offres" class="container offers">
-  <div class="section-head section-head--center">
-    <span class="eyebrow">Offres</span>
-    <h2 class="h2">Deux façons d'utiliser Layerdoc.</h2>
-    <p class="lead">Le contenu est le même dans les deux versions&nbsp;: vous passez de l'une à l'autre sans rien réécrire.</p>
-  </div>
-  <div class="offers__grid">
-    <article class="offer">
-      <div class="offer__head"><h3>Open source</h3><div class="offer__price">Gratuit</div><p>Pour les consultants et les équipes techniques qui gèrent leur propre hébergement.</p></div>
-      <a class="btn btn--outline" href="#formulaire" data-prefill="waitlist" data-track="offre-liste-attente">Rejoindre la liste d'attente</a>
-      <ul class="ticks">
-        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Pages en Markdown, versionnées dans Git</li>
-        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Multi-sites avec onglets et variables par site</li>
-        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Badges de consentement et encadrés «&nbsp;À vérifier&nbsp;»</li>
-        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Modèles de fiches outils et de parcours</li>
-        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Recherche plein texte, thème clair et sombre</li>
-        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Export PDF en un clic</li>
-        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Site statique, à héberger où vous voulez</li>
-        <!-- ⚠️ Ligne « Licence [VOTRE LICENCE] » retirée tant que la licence n'est pas choisie -->
-      </ul>
-    </article>
-    <article class="offer offer--featured">
-      <div class="offer__head"><h3>Enterprise <span class="pill">Multi-sites &amp; agences</span></h3><div class="offer__price">Sur devis</div><p>Pour les marques et les groupes qui partagent leur documentation avec leurs équipes et leurs agences.</p></div>
-      <a class="btn btn--primary" href="#formulaire" data-prefill="demo" data-track="offre-demo">Échanger sur Enterprise</a>
-      <div class="offer__plus">Tout l'open source, plus&nbsp;:</div>
-      <ul class="ticks ticks--accent">
-        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Hébergement sur votre domaine (CNAME) ou chez nous</li>
-        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Marque blanche&nbsp;: logo, couleurs, typographie</li>
-        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>SSO, rôles et accès limité par site</li>
-        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Éditeur sans code, avec relecture avant publication</li>
-        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Rédaction assistée par IA&nbsp;: l'IA écrit, vous relisez</li>
-        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Commentaires avec fils de discussion</li>
-        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Hub&nbsp;: plusieurs documentations réunies en un seul endroit</li>
-        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Recherche assistée par IA, avec sources</li>
-        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Serveur MCP pour vos LLM</li>
-        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Reprise de l'existant et accompagnement</li>
-      </ul>
-    </article>
-  </div>
-
-  <details class="compare-details" open>
-    <summary>Voir le comparatif détaillé</summary>
-  <div class="compare">
-    <table>
-      <caption class="visually-hidden">Comparatif détaillé des offres Open source et Enterprise</caption>
-      <thead><tr><th scope="col">Fonction</th><th scope="col">Open source</th><th scope="col" class="is-ent">Enterprise</th></tr></thead>
-      <tbody>
-        <tr><th scope="row">Pages Markdown, multi-sites, badges de consentement</th><td>✓</td><td>✓</td></tr>
-        <tr><th scope="row">Recherche plein texte</th><td>✓</td><td>✓</td></tr>
-        <tr><th scope="row">Export PDF en un clic</th><td>✓</td><td>✓</td></tr>
-        <tr><th scope="row">Hub multi-documentations</th><td>—</td><td>✓</td></tr>
-        <tr><th scope="row">Hébergement</th><td>À votre charge</td><td>CNAME ou SaaS</td></tr>
-        <tr><th scope="row">Marque blanche</th><td>—</td><td>✓</td></tr>
-        <tr><th scope="row">SSO, rôles, accès par site</th><td>—</td><td>✓</td></tr>
-        <tr><th scope="row">Éditeur sans code et relecture</th><td>—</td><td>✓</td></tr>
-        <tr><th scope="row">Rédaction assistée par IA</th><td>—</td><td>✓</td></tr>
-        <tr><th scope="row">Commentaires et fils de discussion</th><td>—</td><td>✓</td></tr>
-        <tr><th scope="row">Recherche assistée par IA</th><td>—</td><td>✓</td></tr>
-        <tr><th scope="row">Serveur MCP</th><td>—</td><td>✓</td></tr>
-        <tr><th scope="row">Accompagnement</th><td>Communauté</td><td>Dédié</td></tr>
-      </tbody>
-    </table>
-  </div>
-  </details>
-</section>
-
-<!-- 7. FAQ -->
-<section id="faq" class="faq">
-  <div class="faq__inner">
-    <h2 class="h2">Questions fréquentes</h2>
-    <div class="faq__list">
-      <details><summary>Layerdoc remplace-t-il mon plan de marquage Excel&#8239;?<span class="chev" aria-hidden="true">+</span></summary><p>Oui, pour la documentation. Layerdoc reprend le contenu d'un plan de marquage (ou plan de taggage)&nbsp;: événements, propriétés, outils, consentement. Il le rend lisible par toute l'équipe, daté et versionné. Il ne contrôle pas votre tracking&nbsp;: il le documente.</p></details>
-      <details><summary>Layerdoc collecte-t-il des données sur mon site&#8239;?<span class="chev" aria-hidden="true">+</span></summary><p>Non. Layerdoc documente votre configuration, il ne collecte rien. Aucune clé d'API ni secret n'y figure, seulement des identifiants de comptes et de pixels.</p></details>
-      <details><summary>Faut-il savoir coder pour la version open source&#8239;?<span class="chev" aria-hidden="true">+</span></summary><p>Il suffit de savoir éditer un fichier texte et lancer trois commandes. La version Enterprise ajoute un éditeur visuel pour les équipes non techniques.</p></details>
-      <details><summary>Quels outils peut-on documenter&#8239;?<span class="chev" aria-hidden="true">+</span></summary><p>Tous. Les modèles couvrent la gestion de balises (web et server-side), la mesure d'audience, la publicité, l'A/B testing, la CDP et le consentement.</p></details>
-      <details><summary>Quand la version gratuite sera-t-elle disponible&#8239;?<span class="chev" aria-hidden="true">+</span></summary><p>La date n'est pas encore fixée. Les personnes inscrites sur la liste d'attente sont prévenues par e-mail au lancement, et pour cela seulement.</p></details>
-      <details><summary>Peut-on passer de l'open source à Enterprise&#8239;?<span class="chev" aria-hidden="true">+</span></summary><p>Oui. Vos fichiers Markdown sont repris tels quels&nbsp;: rien à réécrire.</p></details>
-      <details><summary>Où est hébergée la version Enterprise&#8239;?<span class="chev" aria-hidden="true">+</span></summary>
-        <!-- ⚠️ À valider avec Guillaume : la maquette contient « [À PRÉCISER : pays d'hébergement, prestataire, engagements RGPD.] ». Texte provisoire neutre, sans engagement inventé. -->
-        <p>Vous choisissez&nbsp;: sur votre propre domaine (CNAME) ou sur la plateforme Layerdoc. Le pays d'hébergement, le prestataire et nos engagements RGPD seront précisés avant le lancement.</p></details>
-    </div>
-  </div>
-</section>
-
-<!-- 8. BLOC FINAL + FORMULAIRE -->
-<section id="formulaire" class="container final">
-  <div class="final__box">
-    <div class="final__text">
-      <h2>Votre tracking mérite mieux qu'un fichier Excel.</h2>
-      <p>Rejoignez la liste d'attente de la version gratuite, ou parlons de votre organisation&nbsp;: Enterprise, devis, accompagnement.</p>
-    </div>
-    <div class="final__card">
-      <form id="contact-form" novalidate aria-label="Formulaire de contact" data-track="formulaire-contact">
-        <fieldset class="need">
-          <legend>Votre besoin</legend>
-          <div class="need__options">
-            <label class="need__opt"><input type="radio" name="besoin" value="open-source" checked><span class="need__box"><b>Open source</b><span>Liste d'attente, gratuit</span></span></label>
-            <label class="need__opt"><input type="radio" name="besoin" value="demo"><span class="need__box"><b>Démo Enterprise</b><span>Démo, devis, accompagnement</span></span></label>
-          </div>
-        </fieldset>
-        <label class="field"><span>Prénom et nom</span><input type="text" name="nom" required autocomplete="name"></label>
-        <label class="field"><span>E-mail professionnel</span><input type="email" name="email" required autocomplete="email"></label>
-        <label class="field"><span>Téléphone <small>(facultatif)</small></span><input type="tel" name="telephone" id="telephone" autocomplete="tel" inputmode="tel"></label>
-        <label class="field"><span>Message</span><textarea name="message" id="message" rows="5" placeholder="Dites-nous en quelques mots ce dont vous avez besoin."></textarea></label>
-        <label class="consent"><input type="checkbox" name="consentement" required><span>J'accepte que mes informations servent à me recontacter au sujet de Layerdoc, et pour cela seulement. <a href="legal/confidentialite.html">Politique de confidentialité</a>.</span></label>
-        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <div id="form-error" class="form-error" role="alert" hidden></div>
-        <button type="submit" class="btn btn--primary btn--lg form-submit" data-track="formulaire-envoyer">Envoyer ma demande</button>
-      </form>
-      <div id="form-thanks" class="thanks" role="status" tabindex="-1" hidden>
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#11845f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.8 2.8L16 9.5"/></svg>
-        <div class="thanks__title">Merci, votre demande est bien partie.</div>
-        <p>Nous revenons vers vous par e-mail.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<!-- 9. PIED DE PAGE -->
-<footer class="site-footer">
-  <div class="container site-footer__inner">
-    <span><strong>Layerdoc</strong> · Un projet Kimetrix</span>
-    <nav aria-label="Pied de page">
-      <!-- ⚠️ Maquette : « Documentation » et « Code source » : libellés adaptés -->
-      <a href="#fonctionnalites">Fonctionnalités</a>
-      <a href="#formulaire" data-prefill="waitlist" data-track="pied-liste-attente">Liste d'attente</a>
-      <a href="#formulaire">Contact</a>
-      <a href="legal/mentions-legales.html">Mentions légales</a>
-      <a href="legal/confidentialite.html">Confidentialité</a>
-    </nav>
-  </div>
-</footer>
-
-<div class="sticky-cta" id="sticky-cta" aria-hidden="true">
-  <a class="btn btn--primary" href="#formulaire" data-prefill="waitlist" data-track="sticky-liste-attente" tabindex="-1">Rejoindre la liste d'attente</a>
+<header class="ld-header nav-1">
+<div class="nav-2">
+<a class="nav-3" href="#top">
+<svg aria-hidden="true" height="30" viewbox="0 0 120 120" width="30"><path d="M12 82 L60 108 L108 82" fill="none" stroke="#1a1830" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"></path><path d="M12 62 L60 88 L108 62" fill="none" stroke="#b4a8ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"></path><path d="M60 16 L108 42 L60 68 L12 42 Z" fill="#5b3df5" stroke="#5b3df5" stroke-linejoin="round" stroke-width="12"></path></svg>
+<span class="nav-4">Layer<span class="nav-5">doc</span></span>
+</a>
+<nav aria-label="Navigation principale" class="ld-nav-desk nav-6">
+<a class="ld-link nav-7" href="#fonctionnalites">Fonctionnalités</a>
+<a class="ld-link nav-7" href="#securite">Sécurité</a>
+<a class="ld-link nav-7" href="#cas-usage">Cas d'usage</a>
+<a class="ld-link nav-7" href="#offres">Offres</a>
+<a class="ld-link nav-7" href="#faq">FAQ</a>
+</nav>
+<div class="ld-actions-desk nav-8">
+<a class="ld-btn nav-9" data-track="menu-connexion" href="https://doc.kimetrix.fr">
+<svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><path d="M10 17l5-5-5-5M15 12H3"></path></svg>Se connecter</a>
+<a class="ld-btn nav-10" data-motif="demo" data-prefill="demo" data-track="menu-demo" href="#formulaire">Demander une démo</a>
 </div>
-
+<button aria-controls="menu-mobile" aria-expanded="false" aria-label="Menu" class="ld-burger nav-11" data-track="menu-burger" id="nav-toggle" type="button"><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22"><path class="ld-burger-open" d="M4 7h16M4 12h16M4 17h16"></path><path class="ld-burger-close" d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+<div class="ld-menu" id="menu-mobile">
+<nav aria-label="Navigation mobile" class="nav-12">
+<a class="nav-13" href="#fonctionnalites">Fonctionnalités</a>
+<a class="nav-13" href="#securite">Sécurité</a>
+<a class="nav-13" href="#cas-usage">Cas d'usage</a>
+<a class="nav-13" href="#offres">Offres</a>
+<a class="nav-13" href="#faq">FAQ</a>
+</nav>
+</div>
+</header>
+<div class="ld-bar bar-1">
+<a class="ld-btn bar-2" data-track="sticky-connexion" href="https://doc.kimetrix.fr">Se connecter</a>
+<a class="ld-btn bar-3" data-motif="demo" data-prefill="demo" data-track="sticky-demo" href="#formulaire">Demander une démo</a>
+</div>
+<main id="contenu">
+<section class="hero-1" id="top">
+<span class="hero-2">Pour les équipes data, digitales et leurs agences</span>
+<h1 class="hero-3">La documentation de vos données, enfin à jour.<span class="nav-5"> Lue par vos équipes, utilisée par vos IA.</span></h1>
+<p class="hero-4">Définitions d'indicateurs, flux de données, plans de marquage, consentement : Layerdoc centralise votre connaissance data au même endroit. Vos équipes y trouvent la bonne réponse, et vos assistants IA aussi.</p>
+<div class="ld-hero-cta hero-5">
+<a class="ld-btn hero-6" data-motif="demo" data-prefill="demo" data-track="hero-demo" href="#formulaire">Demander une démo</a>
+<a class="ld-btn hero-7" data-track="hero-doc-reelle" href="https://doc.kimetrix.fr" rel="noopener" target="_blank">Voir une documentation réelle<svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="16"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+</div>
+</section>
+<section aria-label="Aperçu de la documentation" class="prod-1" id="produit">
+<div class="ld-screen prod-2">
+<div aria-hidden="true" class="ld-fade prod-3"></div>
+<span aria-hidden="true" class="ld-float-btn prod-4"><svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4z"></path><path d="M18 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"></path></svg>Poser une question</span>
+<div class="ld-mock-bar prod-5">
+<div aria-hidden="true" class="prod-6"><span class="prod-7"></span><span class="prod-7"></span><span class="prod-7"></span></div>
+<div class="prod-8">docs.atelier-lumen.fr/vue-d-ensemble</div>
+<span aria-hidden="true" class="prod-9"></span>
+</div>
+<div class="prod-10">
+<div class="prod-11">
+<svg aria-hidden="true" fill="none" height="18" stroke="#a9a6c4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg><span class="prod-12">Atelier Lumen</span>
+<span aria-hidden="true" class="prod-13"></span>
+<span class="prod-14">Documentation</span>
+</div>
+<div class="prod-15"><svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg><span class="prod-16">Rechercher dans la documentation</span><span class="prod-17">⌘ K</span></div>
+<div aria-hidden="true" class="ld-mock-bar prod-18"><span class="prod-19"><svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-5.4A8 8 0 1 1 21 12z"></path></svg></span><svg fill="none" height="17" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="17"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg><svg fill="none" height="17" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="17"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"></path></svg><span class="prod-20">C</span></div>
+</div>
+<div class="prod-21">
+<div class="ld-mock-side prod-22">
+<div class="prod-23"><span class="prod-24">Démarrer</span><span class="prod-25">Vue d'ensemble</span><span class="prod-26">Architecture</span><span class="prod-26">Consentement</span></div>
+<div class="prod-23"><span class="prod-24">DataLayer</span><span class="prod-26">Pages vues</span><span class="prod-26">Conversions</span></div>
+<div class="prod-23"><span class="prod-24">Parcours</span><span class="prod-26">Page d'accueil</span><span class="prod-26">Fiches produit</span></div>
+</div>
+<div class="ld-page prod-27">
+<div class="prod-28">
+<div class="prod-29">Vue d'ensemble</div>
+<div aria-hidden="true" class="prod-30"><span class="prod-31"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15"><path d="M4 20h4L17 11a2.8 2.8 0 0 0-4-4L4 16z"></path></svg></span><span class="prod-31"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"></path></svg></span></div>
+</div>
+<div aria-hidden="true" class="prod-32">Sur cette page<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M6 9l6 6 6-6"></path></svg></div>
+<p class="prod-33">Cette documentation décrit les données collectées sur le site et ce que chaque outil en reçoit.</p>
+<div class="prod-34"><span class="prod-35">En bref</span><ul class="prod-36"><li>Un socle commun : le consentement d'abord, puis la distribution des données à chaque outil.</li><li>Chaque outil a sa fiche dans le menu de gauche.</li></ul></div>
+<div class="prod-37">Les outils en place</div>
+<div class="prod-38"><span class="prod-39">Outil</span><span class="prod-39">Rôle</span><span class="prod-40">Piano Analytics</span><span class="prod-41">Mesure d'audience</span><span class="prod-40">Google Ads</span><span class="prod-41">Régie publicitaire</span></div>
+<div class="ld-float-card prod-42">
+<div class="prod-43">
+<div class="prod-44"><svg aria-hidden="true" fill="none" height="16" stroke="#e2b8ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4z"></path><path d="M18 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"></path></svg>Assistant IA</div>
+<div class="prod-45">Qu'est-ce que le dataLayer ?</div>
+<p class="prod-46">C'est un tableau de données, <strong>window.dataLayer</strong>, que le site remplit à chaque page affichée et à chaque action du visiteur. Google Tag Manager le lit pour déclencher les balises.</p>
+<div class="prod-47">Sources :<span class="prod-48">Principe du dataLayer</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p class="prod-49">Exemple fictif · Atelier Lumen est une entreprise imaginaire.</p>
+</section>
+<section aria-labelledby="constat-titre" class="constat-1" id="constat">
+<div class="ld-sec constat-2">
+<div class="constat-3">
+<span class="constat-4">Le constat</span>
+<h2 class="constat-5" id="constat-titre">Votre connaissance ne devrait pas se perdre en chemin.</h2>
+<p class="constat-6">Deux situations, un même résultat : on perd du temps, et vos équipes comme vos outils n'ont rien de fiable à exploiter.</p>
+</div>
+<div class="constat-7">
+<div class="constat-8">
+<span class="constat-9"><span aria-hidden="true">❌</span> Constat 1</span>
+<div class="constat-10">Rien n'est écrit : la connaissance repose sur une seule personne.</div>
+<p class="constat-11">Personne ne sait vraiment quelles données existent, d'où elles viennent ni ce qu'on peut en faire. Tout est dans la tête d'un expert, d'un chef de projet ou d'une agence.</p>
+</div>
+<div class="constat-8">
+<span class="constat-9"><span aria-hidden="true">❌</span> Constat 2</span>
+<div class="constat-10">Une documentation existe, mais elle est éparpillée et obsolète.</div>
+<p class="constat-11">Wiki, tableurs, présentations, tickets : plusieurs versions, aucune de référence. Elle est difficile à maintenir, et tout aussi difficile à utiliser, pour les équipes comme pour vos outils.</p>
+</div>
+</div>
+</div>
+</section>
+<section aria-labelledby="vision-titre" class="vision-1" id="vision">
+<div class="ld-sec vision-2">
+<div class="vision-3">
+<span class="vision-4">La vision</span>
+<h2 class="vision-5" id="vision-titre">La mémoire vivante de votre entreprise.</h2>
+<p class="vision-6">Demain, la performance de votre entreprise dépendra aussi de sa capacité à transmettre son savoir. À vos collaborateurs comme à vos assistants IA, Layerdoc donne accès à une connaissance centralisée, structurée et toujours à jour.</p>
+</div>
+<div aria-label="Schéma : vos connaissances data (indicateurs, flux, plans de marquage, règles métier) alimentent Layerdoc, le second cerveau, que vos équipes, l'assistant IA et vos LLM interrogent" class="ld-flow3" role="img">
+<div class="vision-7">
+<span class="vision-8">Vos connaissances</span>
+<span class="vision-9"><span aria-hidden="true" class="vision-10"><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M5 20V11M12 20V4M19 20v-6"></path></svg></span><span class="vision-11"><span class="vision-12">Indicateurs et règles de calcul</span><span class="vision-13">Taux de conversion, panier moyen…</span></span></span>
+<span class="vision-9"><span aria-hidden="true" class="vision-14"><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><circle cx="5" cy="6" r="2"></circle><circle cx="5" cy="18" r="2"></circle><circle cx="19" cy="12" r="2"></circle><path d="M7 6h4a4 4 0 0 1 4 4M7 18h4a4 4 0 0 0 4-4"></path></svg></span><span class="vision-11"><span class="vision-12">Flux et architecture data</span><span class="vision-13">Du site à Piano Analytics et Google Ads</span></span></span>
+<span class="vision-9"><span aria-hidden="true" class="vision-15"><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle></svg></span><span class="vision-11"><span class="vision-12">Plans de marquage et tracking</span><span class="vision-13">dataLayer, événements, consentement</span></span></span>
+<span class="vision-9"><span aria-hidden="true" class="vision-16"><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg></span><span class="vision-11"><span class="vision-12">Règles métier et conformité</span><span class="vision-13">RGPD, nommage, validations</span></span></span>
+</div>
+<div class="vision-17"><span class="ld-flow-lbl vision-18">Centralise</span><svg aria-hidden="true" class="ld-flow-arrow" fill="none" height="20" stroke="#8b7bff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 22 14" width="30"><path d="M1 7h19M14 1l6 6-6 6"></path></svg></div>
+<div class="vision-19">
+<svg aria-hidden="true" height="48" viewbox="0 0 120 120" width="48"><path d="M12 82 L60 108 L108 82" fill="none" stroke="#ecebf6" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"></path><path d="M12 62 L60 88 L108 62" fill="none" stroke="#b4a8ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"></path><path d="M60 16 L108 42 L60 68 L12 42 Z" fill="#8b7bff" stroke="#8b7bff" stroke-linejoin="round" stroke-width="12"></path></svg>
+<span class="vision-20">Layerdoc</span>
+<span class="vision-21">Le second cerveau de votre entreprise : une source de vérité, toujours à jour.</span>
+<span aria-hidden="true" class="vision-22"></span>
+<span class="vision-23"><span class="vision-24">Pages et blocs</span><span class="vision-24">Versions</span><span class="vision-24">Droits d'accès</span><span class="vision-24">Assistant IA</span><span class="vision-24">Serveur MCP</span></span>
+</div>
+<div class="vision-17"><span class="ld-flow-lbl vision-18">Interrogent</span><svg aria-hidden="true" class="ld-flow-arrow" fill="none" height="20" stroke="#8b7bff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 22 14" width="30"><path d="M1 7h19M14 1l6 6-6 6"></path></svg></div>
+<div class="vision-25"></div>
+<div class="vision-7">
+<span class="vision-8">Qui s'en sert</span>
+<span class="vision-9"><span aria-hidden="true" class="vision-14"><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"></path></svg></span><span class="vision-11"><span class="vision-12">Vos équipes, qui lisent et écrivent</span><span class="vision-13">Rédigent et retrouvent la bonne page</span></span></span>
+<span class="vision-26"><span aria-hidden="true" class="vision-27"><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4z"></path><path d="M18 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"></path></svg></span><span class="vision-11"><span class="vision-12">L'assistant IA intégré</span><span class="vision-13">Répond et cite ses pages sources</span></span></span>
+<span class="vision-9"><span aria-hidden="true" class="vision-15"><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-5.4A8 8 0 1 1 21 12z"></path></svg></span><span class="vision-11"><span class="vision-12">Vos LLM : Claude, ChatGPT, Mistral</span><span class="vision-13">Lisent, rédigent, mettent à jour</span></span></span>
+<span class="vision-9"><span aria-hidden="true" class="vision-10"><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M9 3v5M15 3v5M6 8h12v3a6 6 0 0 1-12 0zM12 17v4"></path></svg></span><span class="vision-11"><span class="vision-12">Vos outils, via MCP</span><span class="vision-13">Accès direct à la documentation</span></span></span>
+</div>
+</div>
+<ul class="vision-28">
+<li class="vision-29"><strong class="vision-30">Une seule source de vérité</strong><span class="vision-31">Une définition, une version, un endroit.</span></li>
+<li class="vision-29"><strong class="vision-30">Lisible par les humains et les machines</strong><span class="vision-31">Des pages claires pour vos équipes, un accès MCP pour vos IA.</span></li>
+<li class="vision-29"><strong class="vision-30">Qui s'enrichit avec l'IA</strong><span class="vision-31">Vos LLM aident à rédiger et à mettre à jour, sans tout reprendre à la main.</span></li>
+</ul>
+</div>
+</section>
+<section class="ld-sec fonct-1" id="fonctionnalites">
+<div class="fonct-2">
+<span class="constat-4">Fonctionnalités</span>
+<h2 class="constat-5">Tout ce qu'il faut pour construire le second cerveau de votre data.</h2>
+</div>
+<div class="fonct-3">
+<div class="fonct-4">
+<div class="fonct-5">
+<span class="constat-4">Centraliser</span>
+<h3 class="fonct-6">Une plateforme unique pour toute votre connaissance.</h3>
+<p class="fonct-7">Fini le wiki d'un côté et le tableur de l'autre. Tracking, indicateurs, flux de données, règles métier : tout vit dans Layerdoc, organisé en documentations et en pages.</p>
+<ul class="fonct-8">
+<li class="fonct-9"><strong class="fonct-10">Tous les contenus d'une documentation</strong><span class="fonct-11">Standard</span><span class="fonct-12">Texte, images, liens, tableaux, schémas : tout ce qui fait partie d'une documentation vit au même endroit.</span></li>
+<li class="fonct-9"><strong class="fonct-10">Gestion des accès</strong><span class="fonct-11">Standard</span><span class="fonct-12">Ouvrez l'accès à toute l'entreprise et gérez les niveaux : lecteur, éditeur, administrateur.</span></li>
+<li class="fonct-9"><strong class="fonct-10">On-premise en marque blanche</strong><span class="fonct-13">Enterprise</span><span class="fonct-12">Hébergé sur votre sous-domaine, à vos couleurs.</span></li>
+<li class="fonct-9"><strong class="fonct-10">Hub multi-documentations</strong><span class="fonct-13">Enterprise</span><span class="fonct-12">Une porte d'entrée pour toutes les documentations de l'entreprise, ou de vos clients si vous êtes une agence.</span></li>
+</ul>
+</div>
+<div class="fonct-14">
+<span class="fonct-15">Exemple : documentation en marque blanche</span>
+<div aria-label="Maquette d'une documentation en marque blanche hébergée sur docs.atelier-lumen.fr : barre supérieure avec recherche, menu latéral par rubriques, page avec encadré En bref et tableau, bouton Poser une question" class="fonct-16" role="img">
+<div class="fonct-17"><span aria-hidden="true" class="fonct-18"><span class="fonct-19"></span><span class="fonct-20"></span><span class="fonct-21"></span></span><span class="fonct-22"><strong class="fonct-23">docs.atelier-lumen.fr</strong>/vue-d-ensemble</span></div>
+<div class="fonct-24"><span aria-hidden="true" class="fonct-25"></span><strong class="fonct-26">Atelier Lumen</strong><span class="fonct-27">Documentation</span><span class="fonct-28"><span class="fonct-29">Recherche dans la documentation</span><span class="fonct-30">⌘ K</span></span><span aria-hidden="true" class="fonct-31">G</span></div>
+<div class="prod-21">
+<div class="fonct-32"><span class="fonct-33">Démarrer</span><span class="fonct-34">Vue d'ensemble</span><span class="fonct-35">Architecture</span><span class="fonct-35">Consentement</span><span class="fonct-36">DataLayer</span><span class="fonct-35">Pages vues</span><span class="fonct-35">Conversions</span><span class="fonct-36">PARCOURS</span>
+<span class="fonct-35">Page d'accueil</span>
+<span class="fonct-35">Fiches produit</span></div>
+<div class="fonct-37"><span class="fonct-38">Vue d'ensemble</span><span class="fonct-39">Cette documentation décrit les données collectées sur le site et ce que chaque outil en reçoit.</span><div class="fonct-40"><span class="fonct-41">En bref</span>Un socle commun : le consentement d'abord, puis la distribution des données à chaque outil.</div><div class="fonct-42"><span class="fonct-43">Outil</span><span class="fonct-43">Rôle</span><span class="fonct-44">Piano Analytics</span><span class="fonct-45">Mesure d'audience</span><span class="fonct-44">Google Ads</span><span class="fonct-45">Régie publicitaire</span></div></div>
+</div>
+</div>
+<div class="fonct-46"><span class="fonct-47">Votre sous-domaine</span><span class="fonct-47">Vos couleurs et votre logo</span><span class="fonct-47">Accès par rôle</span></div>
+</div>
+</div>
+<div class="fonct-48">
+<div class="fonct-5">
+<span class="constat-4">Documenter</span>
+<h3 class="fonct-6">Un CMS à la portée de tous, sans compétence de développeur.</h3>
+<p class="fonct-7">Ajoutez des pages et des blocs en glisser-déposer ou dans un éditeur visuel. Des blocs conçus pour la data (flux, lignage, dictionnaire, tableau) servent à documenter la connaissance data, lisible par vos équipes et exploitable par vos IA. Marketing, data, agences : tout le monde peut écrire et relire.</p>
+<ul class="fonct-8">
+<li class="fonct-9"><strong class="fonct-10">Éditeur sans code</strong><span class="fonct-11">Standard</span><span class="fonct-12">Créez et modifiez vos pages sans toucher à un fichier.</span></li>
+<li class="fonct-9"><strong class="fonct-10">Blocs pensés pour la data</strong><span class="fonct-11">Standard</span><span class="fonct-12">Data flow, data lineage, architecture, dictionnaire de données, tableau : choisissez un bloc, remplissez-le.</span></li>
+<li class="fonct-9"><strong class="fonct-10">Rédaction assistée par IA</strong><span class="fonct-13">Enterprise</span><span class="fonct-12">L'IA rédige directement dans la page ; vous relisez.</span></li>
+</ul>
+</div>
+<div class="fonct-14">
+<span class="fonct-15">Exemple : ajouter un bloc à une page</span>
+<div aria-label="Page de documentation en mode édition : un bloc survolé avec sa barre d'actions, le bouton plus entre deux blocs et le menu d'ajout de bloc ouvert, avec recherche, bouton Rédiger avec l'IA et les familles de blocs" class="fonct-49" role="img">
+<div class="fonct-50">
+<div class="fonct-51"><span class="fonct-52 ld-ill-title">Vue d'ensemble</span><span class="fonct-53">Mode édition</span></div>
+<div class="fonct-54">Cette documentation décrit les données collectées sur le site : ce que le site envoie, et ce que chaque outil en reçoit.<span class="fonct-55 ld-ill-toolbar"><span>Modifier</span><span>Déplacer</span><span>Dupliquer</span><span class="fonct-56">Supprimer</span></span></div>
+</div>
+<div class="fonct-57"><span class="fonct-58"></span><span aria-hidden="true" class="fonct-59">+</span><span class="fonct-58"></span></div>
+<div class="fonct-60">
+<div class="fonct-61"><span class="fonct-62"><span class="fonct-29">Rechercher un bloc : tableau, SQL, diagramme…</span><span class="fonct-63">/</span></span><span class="fonct-64"><span aria-hidden="true" class="fonct-65">✦</span>Rédiger avec l'IA</span></div>
+<div class="fonct-66"><div class="fonct-67">
+<div class="fonct-68"><span class="fonct-69">Texte</span><span class="fonct-70"><span aria-hidden="true" class="fonct-71"><span class="fonct-72"></span></span>Paragraphe</span><span class="fonct-73"><span aria-hidden="true" class="fonct-71"><span class="fonct-72"></span></span>Chapeau</span><span class="fonct-73"><span aria-hidden="true" class="fonct-71"><span class="fonct-72"></span></span>Titre de section</span><span class="fonct-73"><span aria-hidden="true" class="fonct-71"><span class="fonct-72"></span></span>Sous-titre</span><span class="fonct-73"><span aria-hidden="true" class="fonct-71"><span class="fonct-72"></span></span>Citation</span><span class="fonct-73"><span aria-hidden="true" class="fonct-71"><span class="fonct-72"></span></span>Séparateur</span><span class="fonct-69">Listes</span><span class="fonct-73"><span aria-hidden="true" class="fonct-71"><span class="fonct-74"></span></span>Liste</span><span class="fonct-73"><span aria-hidden="true" class="fonct-71"><span class="fonct-74"></span></span>Checklist</span></div>
+<div class="fonct-68"><span class="fonct-69">Mise en page</span><span class="fonct-73"><span aria-hidden="true" class="fonct-75"><span class="fonct-76"></span></span>Onglets</span><span class="fonct-73"><span aria-hidden="true" class="fonct-75"><span class="fonct-76"></span></span>Cartes</span><span class="fonct-73"><span aria-hidden="true" class="fonct-75"><span class="fonct-76"></span></span>Fiche</span><span class="fonct-73"><span aria-hidden="true" class="fonct-75"><span class="fonct-76"></span></span>Accordéon</span><span class="fonct-69">Tableaux</span><span class="fonct-73"><span aria-hidden="true" class="fonct-77"><span class="fonct-78"></span></span>Tableau classique</span><span class="fonct-73"><span aria-hidden="true" class="fonct-77"><span class="fonct-78"></span></span>Tableau à cocher</span><span class="fonct-73"><span aria-hidden="true" class="fonct-77"><span class="fonct-78"></span></span>Dictionnaire de données</span><span class="fonct-69">Code</span><span class="fonct-73"><span aria-hidden="true" class="fonct-79"><span class="fonct-80"></span></span>HTML</span></div>
+<div class="fonct-68"><span class="fonct-69">Diagrammes</span><span class="fonct-73"><span aria-hidden="true" class="fonct-81"><span class="fonct-82"></span></span>Data flow</span><span class="fonct-73"><span aria-hidden="true" class="fonct-81"><span class="fonct-83"></span></span>Data lineage (DAG)</span><span class="fonct-73"><span aria-hidden="true" class="fonct-81"><span class="fonct-84"></span></span>Sankey</span><span class="fonct-73"><span aria-hidden="true" class="fonct-81"><span class="fonct-85"></span></span>Dependency graph</span><span class="fonct-73"><span aria-hidden="true" class="fonct-81"><span class="fonct-86"></span></span>Architecture</span><span class="fonct-73"><span aria-hidden="true" class="fonct-81"><span class="fonct-84"></span></span>Flowchart</span><span class="fonct-73"><span aria-hidden="true" class="fonct-81"><span class="fonct-83"></span></span>Sequence</span><span class="fonct-73"><span aria-hidden="true" class="fonct-81"><span class="fonct-82"></span></span>Decision tree</span><span class="fonct-73"><span aria-hidden="true" class="fonct-81"><span class="fonct-85"></span></span>Swimlane</span></div>
+</div><div aria-hidden="true" class="fonct-87"></div></div>
+<div class="fonct-88"><span><strong class="fonct-89">Paragraphe</strong> · Texte courant, avec liens et mise en forme</span><span class="fonct-90"><span>↑↓ Naviguer</span><span>↵ Insérer</span><span>Échap Fermer</span></span></div>
+</div>
+<span class="fonct-91"><span class="fonct-23">✓ Enregistré</span><span>Quitter l'édition</span><span class="fonct-92">Enregistrer</span></span>
+</div>
+<p class="fonct-93">Aucune ligne de code : on choisit un bloc, on le remplit, on enregistre.</p>
+</div>
+</div>
+<div class="fonct-4">
+<div class="fonct-5">
+<span class="constat-4">Lire</span>
+<h3 class="fonct-6">Une documentation qu'on lit, qu'on interroge et que vos IA tiennent à jour.</h3>
+<p class="fonct-7">Posez une question à l'assistant IA et obtenez la réponse en quelques secondes, sans lire toute la documentation. Branchez vos LLM via MCP : ils lisent vos pages et les mettent à jour, avec beaucoup moins d'effort de rédaction. Un responsable marketing comprend un flux de données sans solliciter un expert.</p>
+<ul class="fonct-8">
+<li class="fonct-9"><strong class="fonct-10">Export PDF</strong><span class="fonct-11">Standard</span><span class="fonct-12">Partagez une page ou une documentation en un clic.</span></li>
+<li class="fonct-9"><strong class="fonct-10">Serveur MCP</strong><span class="fonct-11">Standard</span><span class="fonct-12">Claude, ChatGPT ou Mistral lisent et mettent à jour la documentation.</span></li>
+<li class="fonct-9"><strong class="fonct-10">Assistant IA intégré</strong><span class="fonct-13">Enterprise</span><span class="fonct-12">Réponse en moins de 5 secondes, avec les pages sources citées.</span></li>
+<li class="fonct-9"><strong class="fonct-10">Commentaires et fils de discussion</strong><span class="fonct-13">Enterprise</span><span class="fonct-12">Commentez un passage : équipes et agences répondent dans le même fil.</span></li>
+</ul>
+</div>
+<div class="fonct-94">
+<span class="fonct-15">Exemple : l'assistant IA d'une documentation</span>
+<div aria-label="Maquette d'une page de documentation pleine largeur, avec l'assistant IA qui s'ouvre par-dessus, à droite, en panneau latéral : une question, la réponse avec les pages sources et le champ pour poser une autre question" class="fonct-95" role="img">
+<div class="fonct-96"><span class="fonct-97">Vue d'ensemble</span><span class="fonct-98">Cette documentation décrit le tracking du site Atelier Lumen : le dataLayer, les événements de conversion et le consentement.</span><span class="fonct-99"></span><span class="fonct-100"></span><span class="fonct-101"></span><span class="fonct-102">Principe du dataLayer</span></div>
+<span aria-hidden="true" class="fonct-103"></span><div class="fonct-104">
+<div class="fonct-51"><span class="fonct-105"><span aria-hidden="true" class="fonct-106">✦</span>Assistant IA</span><span aria-hidden="true" class="fonct-107"><svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="16"><path d="M12 5v14M5 12h14"></path></svg><svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="16"><rect height="16" rx="3" width="18" x="3" y="4"></rect><path d="M15 4v16"></path></svg><svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="16"><path d="M5 12h14"></path></svg></span></div>
+<div class="fonct-108">Qu'est-ce que le dataLayer ?</div>
+<div class="fonct-109"><span>Le dataLayer est un tableau de données, <code class="fonct-110">window.dataLayer</code>, que le site remplit à chaque page affichée et à chaque action du visiteur. Son rôle est double :</span><ul class="fonct-111"><li><strong>Pour le site :</strong> il écrit l'information une seule fois, sans connaître les outils qui la liront.</li><li><strong>Pour Google Tag Manager :</strong> il lit ces entrées et décide quelle balise déclencher.</li></ul></div>
+<div class="fonct-112"><span class="fonct-113">Sources</span><span class="fonct-114">Principe du dataLayer</span></div>
+<div class="fonct-115"><span class="fonct-116"><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="14"><path d="M7 10v12"></path><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"></path></svg>Utile</span><span class="fonct-116"><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="14"><path d="M17 14V2"></path><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"></path></svg>Inexact</span><span class="fonct-116"><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="14"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>Copier</span></div>
+<div class="fonct-117"><span class="fonct-118">Poser une question sur la documentation…</span><span aria-hidden="true" class="fonct-119">↑</span></div>
+<span class="fonct-120">Les réponses peuvent contenir des erreurs : vérifiez les sources.</span>
+</div>
+</div>
+<p class="fonct-93">L'assistant répond à partir de la documentation et cite les pages sources.</p>
+</div>
+</div>
+<div class="fonct-48">
+<div class="fonct-5">
+<span class="constat-4">Mettre à jour</span>
+<h3 class="fonct-6">Vos LLM deviennent vos agents de documentation.</h3>
+<p class="fonct-7">Grâce au MCP, Claude, ChatGPT ou Mistral lisent vos pages, les complètent et en créent de nouvelles avec les blocs data. La documentation reste à jour avec beaucoup moins d'effort de rédaction.</p>
+<ul class="fonct-8">
+<li class="fonct-9"><strong class="fonct-10">Mises à jour depuis votre LLM</strong><span class="fonct-11">Standard</span><span class="fonct-12">Complétez une page ou créez une documentation sans quitter votre assistant habituel.</span></li>
+</ul>
+</div>
+<div class="fonct-121">
+<span class="fonct-15">Exemple : mettre à jour la documentation depuis un LLM</span>
+<div class="vision-7"><div class="fonct-122"><div class="fonct-123"><span class="fonct-124">＋ Nouvelle session</span><span class="fonct-125">Récents</span><span class="fonct-126">Fiches produit : événements</span><span class="fonct-127">Page d'accueil</span><span class="fonct-127">Vue d'ensemble</span><span class="fonct-128"><span aria-hidden="true" class="fonct-129">CD</span><span class="fonct-130">Camille Durand</span></span></div><div class="fonct-131">
+<div class="fonct-132">Ajoute l'événement « Ajout au panier » à la page Fiches produit de la documentation Atelier Lumen.</div>
+<div class="fonct-133"><span class="fonct-57"><span aria-hidden="true" class="fonct-134">✓</span>Chargement de Layerdoc MCP</span><span class="fonct-57"><span aria-hidden="true" class="fonct-134">✓</span>Lecture de la page « Fiches produit »</span><span class="fonct-57"><span aria-hidden="true" class="fonct-134">✓</span>Modification du tableau des événements</span><span class="fonct-57"><span aria-hidden="true" class="fonct-134">✓</span>Enregistrement de la page</span></div>
+<div class="fonct-135">J'ai ajouté l'événement <strong>Ajout au panier</strong> au tableau de la page Fiches produit, avec son déclencheur et ses paramètres.<div class="fonct-136">Page : <span class="fonct-137">Atelier Lumen · Parcours / Fiches produit</span></div></div><div class="fonct-138"><span>Écrire un message…</span><span aria-hidden="true" class="fonct-139">↑</span></div></div></div>
+</div>
+<p class="fonct-93">Le LLM lit la page via MCP, la modifie et l'enregistre dans Layerdoc.</p>
+</div>
+</div>
+</div>
+</section>
+<section aria-labelledby="securite-titre" class="vision-1" id="securite">
+<div class="ld-sec secu-1">
+<div class="secu-2">
+<span class="vision-4">Sécurité et réversibilité</span>
+<h2 class="secu-3" id="securite-titre">Vos données restent les vôtres.</h2>
+</div>
+<div class="ld-sec-grid">
+<div class="secu-4"><span aria-hidden="true" class="secu-5"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20a6.5 6.5 0 0 1 13 0"></path><path d="M17 11l2 2 3.5-3.5"></path></svg></span><div class="secu-6">Accès maîtrisés</div><p class="secu-7">Rôles lecteur, éditeur et administrateur, accès par documentation.</p></div>
+</div>
+<p class="secu-8">Layerdoc ne collecte aucune donnée sur votre site et ne stocke ni clé d'API ni secret : il documente.</p>
+</div>
+</section>
+<section aria-labelledby="cas-titre" class="usage-1" id="cas-usage">
+<div class="ld-sec usage-2">
+<div class="usage-3">
+<span class="constat-4">Cas d'usage</span>
+<h2 class="secu-3" id="cas-titre">Par où commencer ?</h2>
+<p class="usage-4">Quatre usages qui rendent service. </p>
+</div>
+<div class="usage-5">
+<div class="usage-6">
+<div class="usage-7"><span aria-hidden="true" class="usage-8"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg></span><span class="usage-9">Notre spécialité</span></div>
+<span class="usage-10">Data, acquisition, agences</span>
+<div class="secu-6">Plan de marquage et tracking</div>
+<p class="usage-11">Événements, balises, pixels et conversions : une référence unique pour vos équipes et vos agences, qui ne repart plus de zéro à chaque changement de prestataire.</p>
+<p class="usage-12"><strong class="usage-13">Ce que vous documentez :</strong> événements, balises, conversions, consentement</p>
+</div>
+<div class="usage-6">
+<div class="usage-14"><span aria-hidden="true" class="usage-8"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"></path><path d="M5 17a3 3 0 0 1 3-3h11"></path></svg></span></div>
+<span class="usage-10">Direction, marketing, BI</span>
+<div class="secu-6">Dictionnaire d'indicateurs</div>
+<p class="usage-11">Une seule définition par indicateur, avec sa règle de calcul et sa source. Fini les trois chiffres différents pour le même KPI.</p>
+<p class="usage-12"><strong class="usage-13">Ce que vous documentez :</strong> KPI, règles de calcul, sources</p>
+</div>
+<div class="usage-6">
+<div class="usage-14"><span aria-hidden="true" class="usage-8"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22"><rect height="6" rx="1.5" width="7" x="3" y="3"></rect><rect height="6" rx="1.5" width="7" x="14" y="15"></rect><path d="M6.5 9v4a2 2 0 0 0 2 2H14"></path></svg></span></div>
+<span class="usage-10">Data engineering</span>
+<div class="secu-6">Flux et architecture data</div>
+<p class="usage-11">D'où vient chaque donnée, par où elle passe, où elle arrive : des diagrammes de flux et de lignage lisibles par tous.</p>
+<p class="usage-12"><strong class="usage-13">Ce que vous documentez :</strong> sources, traitements, destinations</p>
+</div>
+<div class="usage-6">
+<div class="usage-14"><span aria-hidden="true" class="usage-8"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22"><path d="M12 3l8 3v6c0 4.5-3.3 8-8 9-4.7-1-8-4.5-8-9V6z"></path><path d="M8.5 12l2.5 2.5L15.5 10"></path></svg></span></div>
+<span class="usage-10">DPO, juridique</span>
+<div class="secu-6">Consentement et conformité</div>
+<p class="usage-11">Quel outil se déclenche, avec quel consentement : une vue claire à présenter en audit. </p>
+<p class="usage-12"><strong class="usage-13">Ce que vous documentez :</strong> outils, finalités, groupes de consentement</p>
+</div>
+</div>
+</div>
+</section>
+<section aria-labelledby="cmp-titre" class="cmp-1" id="comparatif">
+<div class="ld-sec usage-2">
+<div class="secu-2">
+<span class="constat-4">Comparatif</span>
+<h2 class="secu-3" id="cmp-titre">Pourquoi Layerdoc plutôt qu'un autre outil ?</h2>
+<p class="fonct-7">Les autres concurrents stockent du texte ou cataloguent des données. Layerdoc est conçu pour documenter la connaissance data et la rendre utilisable par vos IA.</p>
+</div>
+<table aria-label="Comparatif : autres concurrents (wikis généralistes, catalogues de données) et Layerdoc" class="ld-cmp-table cmp-2">
+<thead>
+<tr>
+<th class="cmp-3" scope="col">Critère</th>
+<th class="cmp-4" scope="col">Autres concurrents : wikis généralistes</th>
+<th class="cmp-4" scope="col">Autres concurrents : catalogues de données</th>
+<th class="cmp-5" scope="col">Layerdoc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="cmp-6" scope="row">Blocs pensés pour la data (flux, lignage, dictionnaire)</th>
+<td class="cmp-7"><span class="cmp-8"><svg aria-hidden="true" class="cmp-9" height="14" viewbox="0 0 16 16" width="14"><circle cx="8" cy="8" fill="#d97706" r="4.5"></circle></svg>À construire soi-même</span></td>
+<td class="cmp-7"><span class="cmp-8"><svg aria-hidden="true" class="cmp-9" height="14" viewbox="0 0 16 16" width="14"><circle cx="8" cy="8" fill="#d97706" r="4.5"></circle></svg>Partiel</span></td>
+<td class="cmp-10"><span class="cmp-8"><svg aria-hidden="true" class="cmp-9" fill="none" height="16" stroke="#11845f" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.8" viewbox="0 0 24 24" width="16"><path d="M20 6L9 17l-5-5"></path></svg>Natif</span></td>
+</tr>
+<tr>
+<th class="cmp-6" scope="row">Lisible par des équipes non techniques</th>
+<td class="cmp-7"><span class="cmp-8"><svg aria-hidden="true" class="cmp-9" fill="none" height="16" stroke="#11845f" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.8" viewbox="0 0 24 24" width="16"><path d="M20 6L9 17l-5-5"></path></svg>Oui</span></td>
+<td class="cmp-7"><span class="cmp-8"><svg aria-hidden="true" class="cmp-9" height="14" viewbox="0 0 16 16" width="14"><circle cx="8" cy="8" fill="#d97706" r="4.5"></circle></svg>Rarement</span></td>
+<td class="cmp-10"><span class="cmp-8"><svg aria-hidden="true" class="cmp-9" fill="none" height="16" stroke="#11845f" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.8" viewbox="0 0 24 24" width="16"><path d="M20 6L9 17l-5-5"></path></svg>Oui</span></td>
+</tr>
+<tr>
+<th class="cmp-6" scope="row">Vos IA lisent et mettent à jour la doc (MCP, le standard qui connecte vos IA à vos outils)</th>
+<td class="cmp-7"><span class="cmp-8"><svg aria-hidden="true" class="cmp-9" height="14" viewbox="0 0 16 16" width="14"><circle cx="8" cy="8" fill="#d97706" r="4.5"></circle></svg>Partiel</span></td>
+<td class="cmp-7"><span class="cmp-8"><svg aria-hidden="true" class="cmp-9" height="14" viewbox="0 0 16 16" width="14"><circle cx="8" cy="8" fill="#d97706" r="4.5"></circle></svg>Lecture seule le plus souvent</span></td>
+<td class="cmp-10"><span class="cmp-8"><svg aria-hidden="true" class="cmp-9" fill="none" height="16" stroke="#11845f" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.8" viewbox="0 0 24 24" width="16"><path d="M20 6L9 17l-5-5"></path></svg>Lecture et mise à jour</span></td>
+</tr>
+<tr>
+<th class="cmp-6" scope="row">IA qui cite ses sources et signale ses doutes</th>
+<td class="cmp-7"><span class="cmp-8"><svg aria-hidden="true" class="cmp-9" height="14" viewbox="0 0 16 16" width="14"><circle cx="8" cy="8" fill="#d97706" r="4.5"></circle></svg>Variable</span></td>
+<td class="cmp-7"><span class="cmp-8"><svg aria-hidden="true" class="cmp-9" height="14" viewbox="0 0 16 16" width="14"><circle cx="8" cy="8" fill="#d97706" r="4.5"></circle></svg>Variable</span></td>
+<td class="cmp-10"><span class="cmp-8"><svg aria-hidden="true" class="cmp-9" fill="none" height="16" stroke="#11845f" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.8" viewbox="0 0 24 24" width="16"><path d="M20 6L9 17l-5-5"></path></svg>Oui</span></td>
+</tr>
+<tr>
+<th class="cmp-11" scope="row">Rédaction de la documentation par des experts</th>
+<td class="cmp-12"><span class="cmp-8"><svg aria-hidden="true" class="cmp-9" fill="none" height="16" stroke="#6f6c88" stroke-linecap="round" stroke-width="2.6" viewbox="0 0 24 24" width="16"><path d="M6 12h12"></path></svg>Non</span></td>
+<td class="cmp-12"><span class="cmp-8"><svg aria-hidden="true" class="cmp-9" fill="none" height="16" stroke="#6f6c88" stroke-linecap="round" stroke-width="2.6" viewbox="0 0 24 24" width="16"><path d="M6 12h12"></path></svg>Non</span></td>
+<td class="cmp-13"><span class="cmp-8"><svg aria-hidden="true" class="cmp-9" fill="none" height="16" stroke="#11845f" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.8" viewbox="0 0 24 24" width="16"><path d="M20 6L9 17l-5-5"></path></svg>En option (Kimetrix)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="ld-cmp-cards cmp-14">
+<div class="cmp-15">
+<div class="cmp-16">Blocs pensés pour la data (flux, lignage, dictionnaire)</div>
+<div class="cmp-17"><span class="cmp-18">Wiki</span><span>À construire soi-même</span></div>
+<div class="cmp-17"><span class="cmp-18">Catalogue</span><span>Partiel</span></div>
+<div class="cmp-19"><span class="cmp-20">Layerdoc</span><span>Natif</span></div>
+</div>
+<div class="cmp-15">
+<div class="cmp-16">Lisible par des équipes non techniques</div>
+<div class="cmp-17"><span class="cmp-18">Wiki</span><span>Oui</span></div>
+<div class="cmp-17"><span class="cmp-18">Catalogue</span><span>Rarement</span></div>
+<div class="cmp-19"><span class="cmp-20">Layerdoc</span><span>Oui</span></div>
+</div>
+<div class="cmp-15">
+<div class="cmp-16">Vos IA lisent et mettent à jour la doc (MCP, le standard qui connecte vos IA à vos outils)</div>
+<div class="cmp-17"><span class="cmp-18">Wiki</span><span>Partiel</span></div>
+<div class="cmp-17"><span class="cmp-18">Catalogue</span><span>Lecture seule le plus souvent</span></div>
+<div class="cmp-19"><span class="cmp-20">Layerdoc</span><span>Lecture et mise à jour</span></div>
+</div>
+<div class="cmp-15">
+<div class="cmp-16">IA qui cite ses sources et signale ses doutes</div>
+<div class="cmp-17"><span class="cmp-18">Wiki</span><span>Variable</span></div>
+<div class="cmp-17"><span class="cmp-18">Catalogue</span><span>Variable</span></div>
+<div class="cmp-19"><span class="cmp-20">Layerdoc</span><span>Oui</span></div>
+</div>
+<div class="cmp-15">
+<div class="cmp-16">Rédaction de la documentation par des experts</div>
+<div class="cmp-17"><span class="cmp-18">Wiki</span><span>Non</span></div>
+<div class="cmp-17"><span class="cmp-18">Catalogue</span><span>Non</span></div>
+<div class="cmp-19"><span class="cmp-20">Layerdoc</span><span>En option (Kimetrix)</span></div>
+</div>
+</div>
+</div>
+</section>
+<section aria-labelledby="offres-titre" id="offres"><span aria-hidden="true" class="ld-anchor" id="enterprise"></span>
+<div class="ld-sec usage-2">
+<div class="offres-1">
+<span class="constat-4">Offres</span>
+<h2 class="secu-3" id="offres-titre">Deux offres, un accompagnement en option.</h2>
+<p class="offres-2">Standard pour une équipe, Enterprise pour diffuser à toute l'organisation.</p>
+</div>
+<div class="ld-offers">
+<div class="offres-3">
+<div class="fonct-112"><div class="offres-4">Standard</div><div class="offres-5"><span class="offres-6">59 €</span><span class="offres-7">HT / mois</span></div><p class="offres-8">Pour une documentation partagée avec vos outils et vos assistants, avec des accès maîtrisés.</p></div>
+<a class="ld-btn offres-9" data-motif="standard" data-prefill="standard" data-track="offre-standard" href="#formulaire">Demander l'accès</a>
+<ul class="offres-10">
+<li class="nav-8"><svg aria-hidden="true" class="offres-11" fill="none" height="18" stroke="#11845f" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24" width="18"><path d="M20 6L9 17l-5-5"></path></svg>1 documentation</li>
+<li class="nav-8"><svg aria-hidden="true" class="offres-11" fill="none" height="18" stroke="#11845f" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24" width="18"><path d="M20 6L9 17l-5-5"></path></svg>Serveur MCP pour vos IA</li>
+<li class="nav-8"><svg aria-hidden="true" class="offres-11" fill="none" height="18" stroke="#11845f" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24" width="18"><path d="M20 6L9 17l-5-5"></path></svg>Éditeur sans code et blocs data</li>
+<li class="nav-8"><svg aria-hidden="true" class="offres-11" fill="none" height="18" stroke="#11845f" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24" width="18"><path d="M20 6L9 17l-5-5"></path></svg>Rôles et droits d'accès</li>
+</ul>
+</div>
+<div class="ld-offer-ent offres-12" id="contact">
+<div class="fonct-112"><div class="offres-13"><span class="offres-4">Enterprise</span><span class="offres-14">Pour les ETI et grands comptes</span></div>
+<div class="offres-15">Sur devis</div>
+<p class="offres-8">Pour centraliser votre connaissance data et la diffuser à vos équipes, vos agences et vos outils.</p></div>
+<a class="ld-btn offres-16" data-motif="demo" data-prefill="demo" data-track="offre-demo" href="#formulaire">Demander une démo</a>
+<div class="offres-17">Tout Standard, plus :</div>
+<ul class="offres-10">
+<li class="nav-8"><svg aria-hidden="true" class="offres-11" fill="none" height="18" stroke="#5b3df5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24" width="18"><path d="M20 6L9 17l-5-5"></path></svg>Assistant IA : rédaction assistée et recherche avec sources</li>
+<li class="nav-8"><svg aria-hidden="true" class="offres-11" fill="none" height="18" stroke="#5b3df5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24" width="18"><path d="M20 6L9 17l-5-5"></path></svg>Marque blanche</li>
+<li class="nav-8"><svg aria-hidden="true" class="offres-11" fill="none" height="18" stroke="#5b3df5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24" width="18"><path d="M20 6L9 17l-5-5"></path></svg>Commentaires avec fils de discussion</li>
+<li class="nav-8"><svg aria-hidden="true" class="offres-11" fill="none" height="18" stroke="#5b3df5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24" width="18"><path d="M20 6L9 17l-5-5"></path></svg>Connexion SSO</li>
+<li class="nav-8"><svg aria-hidden="true" class="offres-11" fill="none" height="18" stroke="#5b3df5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24" width="18"><path d="M20 6L9 17l-5-5"></path></svg>Hub multi-documentations</li>
+</ul>
+</div>
+</div>
+<div class="offres-18" id="offre-agences">
+<div class="offres-19">
+<div class="offres-13"><span class="offres-4">Offre agences</span><span class="offres-14">Pour les agences et consultants</span></div>
+<p class="offres-8">Documentez les données de chacun de vos clients dans un espace dédié, à vos couleurs, avec l'accès que chacun doit avoir.</p>
+</div>
+<ul class="offres-20">
+<li class="nav-8"><svg aria-hidden="true" class="offres-11" fill="none" height="18" stroke="#5b3df5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24" width="18"><path d="M20 6L9 17l-5-5"></path></svg>Une documentation par client, réunies dans un hub</li>
+<li class="nav-8"><svg aria-hidden="true" class="offres-11" fill="none" height="18" stroke="#5b3df5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24" width="18"><path d="M20 6L9 17l-5-5"></path></svg>Marque blanche : sous-domaine, couleurs et logo</li>
+<li class="nav-8"><svg aria-hidden="true" class="offres-11" fill="none" height="18" stroke="#5b3df5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24" width="18"><path d="M20 6L9 17l-5-5"></path></svg>Rôles et droits d'accès par client</li>
+<li class="nav-8"><svg aria-hidden="true" class="offres-11" fill="none" height="18" stroke="#5b3df5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24" width="18"><path d="M20 6L9 17l-5-5"></path></svg>Serveur MCP pour vos IA</li>
+</ul>
+<a class="ld-btn offres-21" data-motif="agence" data-prefill="agence" data-track="offre-agence" href="#formulaire">Parler de l'offre agences</a>
+</div>
+<p class="offres-22">Accompagnement Kimetrix en option, sur devis, avec les deux offres.</p>
+</div>
+</section>
+<section aria-labelledby="faq-titre" class="faq-1" id="faq">
+<div class="ld-sec faq-2">
+<div class="faq-3">
+<span class="constat-4">FAQ</span>
+<h2 class="secu-3" id="faq-titre">Questions fréquentes</h2>
+</div>
+<div class="fonct-112">
+<details class="faq-4"><summary class="faq-5">Pourquoi Layerdoc plutôt qu'un autre outil de documentation ?<span aria-hidden="true" class="chev faq-6">+</span></summary><p class="faq-7">Les autres concurrents stockent du texte ou cataloguent des données. Layerdoc propose des blocs conçus pour la data (flux, lignage, dictionnaire), une IA qui cite ses sources, et un accès MCP, le standard qui relie vos IA à vos outils, pour que vos IA lisent et mettent à jour la documentation.</p></details>
+<details class="faq-4"><summary class="faq-5">Qui rédige la documentation ?<span aria-hidden="true" class="chev faq-6">+</span></summary><p class="faq-7">Vous, avec l'éditeur sans code, ou nous, avec l'accompagnement Kimetrix. Dans les deux cas, vos équipes relisent avant publication.</p></details>
+<details class="faq-4"><summary class="faq-5">Peut-on reprendre notre documentation existante ?<span aria-hidden="true" class="chev faq-6">+</span></summary><p class="faq-7">Oui. Nous partons de vos plans de marquage, conteneurs GTM, wikis et tableurs.</p></details>
+<details class="ld-more faq-8"><summary class="faq-9"><span class="ld-more-open">Voir plus de questions</span><span class="ld-more-close">Voir moins</span><svg aria-hidden="true" class="ld-more-chev faq-10" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24" width="16"><path d="M6 9l6 6 6-6"></path></svg></summary><div class="fonct-112">
+<details class="faq-4"><summary class="faq-5">Faut-il savoir coder ?<span aria-hidden="true" class="chev faq-6">+</span></summary><p class="faq-7">Non. L'éditeur sans code permet aux équipes non techniques de rédiger et de relire, sans toucher à un fichier.</p></details>
+<details class="faq-4"><summary class="faq-5">Comment nos IA accèdent-elles à la documentation ?<span aria-hidden="true" class="chev faq-6">+</span></summary><p class="faq-7">Par le serveur MCP, le standard qui relie vos IA à vos outils, compatible avec Claude, ChatGPT, Cursor ou tout client MCP. L'assistant intégré répond aussi à vos équipes, en citant les pages sources.</p></details>
+<details class="faq-4"><summary class="faq-5">Layerdoc collecte-t-il des données sur mon site ?<span aria-hidden="true" class="chev faq-6">+</span></summary><p class="faq-7">Non. Layerdoc documente votre configuration, il ne collecte rien. Aucune clé d'API ni secret n'y figure, seulement des identifiants de comptes et de pixels.</p></details>
+</div></details>
+</div>
+</div>
+</section>
+<section class="contact-1" id="formulaire">
+<div class="contact-2">
+<div class="contact-3">
+<h2 class="contact-4">Voyons si Layerdoc répond à votre besoin.</h2>
+<p class="contact-5">Démo sur vos propres cas, devis ou accompagnement : décrivez votre contexte, nous revenons vers vous.</p>
+</div>
+<div class="contact-6">
+<form aria-label="Formulaire de contact" class="contact-7" data-track="formulaire-contact" id="contact-form" novalidate="">
+<div class="contact-8">
+<label class="contact-9">Prénom et nom
+<input autocomplete="name" class="contact-10" name="nom" required="" type="text"/></label>
+<label class="contact-9">E-mail professionnel
+<input autocomplete="email" class="contact-10" name="email" required="" type="email"/></label>
+</div>
+<div class="contact-8">
+<label class="contact-9">Entreprise
+<input autocomplete="organization" class="contact-10" name="entreprise" required="" type="text"/></label>
+<label class="contact-9">Votre besoin
+<select class="contact-10" name="besoin">
+<option value="Démo Enterprise">Démo Enterprise</option>
+<option value="Standard">Standard</option>
+<option value="Accompagnement">Accompagnement</option>
+<option value="Autre">Autre</option>
+</select></label>
+</div>
+<label class="contact-9">Message (facultatif)
+<textarea class="contact-11" id="message" name="message" placeholder="Dites-nous en quelques mots ce dont vous avez besoin." rows="3"></textarea></label>
+<label class="contact-12"><input class="contact-13" name="consentement" required="" type="checkbox"/>J'accepte que mes informations servent à me recontacter au sujet de Layerdoc, et pour cela seulement.</label>
+<input aria-hidden="true" autocomplete="off" class="hp" name="botcheck" tabindex="-1" type="checkbox"/><div class="ld-form-error" hidden="" id="form-error" role="alert"></div><button class="ld-btn contact-14" data-track="formulaire-envoyer" type="submit">Envoyer ma demande</button>
+</form>
+<div class="contact-15" hidden="" id="form-thanks" role="status" tabindex="-1">
+<svg aria-hidden="true" fill="none" height="36" stroke="#11845f" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="36"><circle cx="12" cy="12" r="9"></circle><path d="M8 12.5l2.8 2.8L16 9.5"></path></svg>
+<div class="contact-16">Merci, votre demande est bien partie.</div>
+<p class="contact-17">Nous revenons vers vous.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="foot-1">
+<div class="foot-2">
+<span><strong class="usage-13">Layerdoc</strong> · Un projet Kimetrix</span>
+<nav aria-label="Pied de page" class="foot-3">
+<a class="foot-4" data-track="pied-connexion" href="https://doc.kimetrix.fr">Se connecter</a>
+<a class="foot-4" href="#securite">Sécurité</a>
+<a class="foot-4" href="#formulaire">Contact</a>
+<a class="foot-4" href="legal/mentions-legales.html">Mentions légales</a>
+<a class="foot-4" href="legal/confidentialite.html">Politique de confidentialité</a>
+</nav>
+</div>
+</footer>
 <script src="assets/js/config.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
