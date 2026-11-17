@@ -2782,9 +2782,10 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px
 summary { cursor: pointer; list-style: none; }
 summary::-webkit-details-marker { display: none; }
 details[open] > summary .chev { transform: rotate(45deg); }
-.ld-more[open] > summary .ld-more-open { display: none; }
-.ld-more:not([open]) > summary .ld-more-close { display: none; }
-.ld-more[open] > summary .ld-more-chev { transform: rotate(180deg); }
+.ld-more-btn { width: 100%; font-family: inherit; cursor: pointer; }
+.ld-more-btn[aria-expanded="true"] .ld-more-open { display: none; }
+.ld-more-btn[aria-expanded="false"] .ld-more-close { display: none; }
+.ld-more-btn[aria-expanded="true"] .ld-more-chev { transform: rotate(180deg); }
 
 /* Formulaire */
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
