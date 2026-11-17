@@ -2827,3 +2827,22 @@ button[type="submit"][disabled] { opacity: 0.65; cursor: wait; }
 }
 
 #offre-agences { scroll-margin-top: 80px; }
+
+/* ---- Accompagnement Kimetrix (entre Fonctionnalités et Sécurité) ---- */
+.landing .accomp-1 { background: var(--lavande); border-top: 1px solid #e3dcff; border-bottom: 1px solid #e3dcff; }
+.landing .accomp-eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.landing .accomp-pill { padding: 3px 12px; border-radius: 999px; background: var(--white); color: var(--violet-hover); font-size: 12px; font-weight: 700; }
+.landing .accomp-lead { color: var(--slate-strong); }
+.landing .accomp-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+.landing .accomp-card, .landing .accomp-choice { border: 1px solid #d9d2ff; border-radius: 20px; background: var(--white); }
+.landing .accomp-card { padding: 28px; display: flex; flex-direction: column; gap: 14px; }
+.landing .accomp-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.landing .accomp-icon { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 12px; background: var(--lavande); color: var(--violet-text); }
+.landing .accomp-step { font-size: 12.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--violet-text); }
+.landing .accomp-card-title { margin: 0; font-family: 'Space Grotesk', 'IBM Plex Sans', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.2; letter-spacing: -.015em; }
+.landing .accomp-card-text { margin: 0; color: var(--slate); font-size: 16px; }
+.landing .accomp-choice { padding: 24px 28px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px; }
+.landing .accomp-choice-text { display: flex; flex-direction: column; gap: 6px; }
+.landing .accomp-choice-sub { margin: 0; color: var(--slate); font-size: 15.5px; }
+.landing .accomp-cta { margin-top: 0; justify-content: flex-start; }
+@media (max-width: 640px) { .landing .accomp-cta { align-self: stretch; } }

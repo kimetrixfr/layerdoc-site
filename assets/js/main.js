@@ -60,6 +60,7 @@
   var PREFILL = {
     standard: { motif: "Standard", text: "Bonjour, je souhaite en savoir plus sur l'offre Standard de Layerdoc." },
     demo: { motif: "Démo Enterprise", text: "Bonjour, je souhaite une démonstration et un devis pour Layerdoc Enterprise." },
+    accompagnement: { motif: "Accompagnement", text: "Bonjour, je souhaite que vous documentiez mes données de A à Z. Voici mon contexte\u00a0: " },
     agence: { motif: "Autre", text: "Bonjour, je souhaite en savoir plus sur l'offre agences de Layerdoc." }
   };
   // Message proposé quand on change de motif à la main (uniquement si le message n'a pas été réécrit).
@@ -68,7 +69,7 @@
     "Démo Enterprise": PREFILL.demo.text,
     "Programme pionniers": "Bonjour, je souhaite rejoindre le programme pionniers de Layerdoc. Voici mon contexte\u00a0: ",
     "Dossier sécurité": "Bonjour, je souhaite recevoir le dossier sécurité de Layerdoc.",
-    "Accompagnement": "Bonjour, je souhaite que vous documentiez mes données de A à Z. Voici mon contexte : ",
+    "Accompagnement": PREFILL.accompagnement.text,
     "Autre": ""
   };
 
