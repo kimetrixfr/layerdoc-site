@@ -140,21 +140,6 @@
   border-top: 1px solid var(--line);
   box-shadow: 0 -8px 20px -14px rgba(26,24,48,.3);
 }
-.landing .bar-2 {
-  flex: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 48px;
-  padding: 0 16px;
-  border: 1px solid var(--btn-line);
-  border-radius: 12px;
-  background: var(--white);
-  color: var(--ink);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 15px;
-}
 .landing .bar-3 {
   flex: 1;
   display: inline-flex;
@@ -2752,6 +2737,19 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px
 .ld-burger, .ld-bar { display: none; }
 .ld-menu { display: none; border-top: 1px solid var(--line); background: rgba(251, 251, 253, 0.97); }
 .ld-header.is-open .ld-menu { display: block; }
+/* Menu mobile : panneau posé par-dessus la page (le header sticky sert de repère), sans décaler le contenu */
+.ld-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: calc(100vh - 64px);
+  max-height: calc(100dvh - 64px);
+  overflow-y: auto;
+  background: var(--white, #fff);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 24px 40px -20px rgba(26, 24, 48, 0.35);
+}
 .ld-burger[aria-expanded="false"] .ld-burger-close, .ld-burger[aria-expanded="true"] .ld-burger-open { display: none; }
 @media (max-width: 900px) {
   .ld-nav-desk, .ld-actions-desk { display: none !important; }
@@ -2793,10 +2791,6 @@ details[open] > summary .chev { transform: rotate(45deg); }
 button[type="submit"][disabled] { opacity: 0.65; cursor: wait; }
 
 @media (max-width: 1040px) {
-  .ld-screen { aspect-ratio: auto; }
-  .ld-page { max-width: none !important; }
-  .ld-float-card { position: static !important; width: auto !important; margin: 0 !important; }
-  .ld-float-btn, .ld-fade { display: none !important; }
   .ld-sec-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 860px) {
@@ -2815,11 +2809,12 @@ button[type="submit"][disabled] { opacity: 0.65; cursor: wait; }
   .ld-sec-grid { grid-template-columns: minmax(0, 1fr); }
   .ld-hero-cta { flex-direction: column; align-self: stretch; }
   .ld-hero-cta a { justify-content: center; box-sizing: border-box; }
-  .ld-mock-bar, .ld-mock-side { display: none !important; }
-  /* Illustration « ajouter un bloc » : titre réduit, barre d'actions dans le flux (sinon elle chevauche le titre) */
-  .landing .ld-ill-title { font-size: 24px; }
-  .landing .ld-ill-toolbar { position: static; margin-top: 8px; display: flex; }
+  /* Illustrations des fonctionnalités : cadre resserré pour laisser plus de place à la maquette réduite */
+  .landing .fonct-14, .landing .fonct-94, .landing .fonct-121 { padding: 14px; }
+  .landing .prod-1 { padding-left: 12px; padding-right: 12px; }
 }
+/* Illustrations des fonctionnalités : rendues à la largeur desktop, puis réduites par main.js (propriété zoom) */
+.landing [data-ill-scaled] { max-width: none; flex: none; box-sizing: border-box; }
 @media (prefers-reduced-motion: reduce) {
   .ld-btn, .ld-link, .ld-header { transition: none; }
   .ld-btn:hover { transform: none; }
@@ -2845,4 +2840,87 @@ button[type="submit"][disabled] { opacity: 0.65; cursor: wait; }
 .landing .accomp-choice-text { display: flex; flex-direction: column; gap: 6px; }
 .landing .accomp-choice-sub { margin: 0; color: var(--slate); font-size: 15.5px; }
 .landing .accomp-cta { margin-top: 0; justify-content: flex-start; }
-@media (max-width: 640px) { .landing .accomp-cta { align-self: stretch; } }
+@media (max-width: 640px) {
+  .landing .accomp-cta { align-self: stretch; }
+  /* Étapes : carrousel à défilement horizontal (la carte suivante dépasse pour inviter au scroll) */
+  .landing .accomp-steps {
+    display: flex;
+    gap: 14px;
+    margin: 0 -24px;
+    padding: 0 24px 4px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 24px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .landing .accomp-steps::-webkit-scrollbar { display: none; }
+  .landing .accomp-card { flex: 0 0 82%; scroll-snap-align: start; padding: 22px; }
+}
+
+/* ---- Cas d'usage : carrousel à défilement horizontal sur mobile ---- */
+@media (max-width: 640px) {
+  .landing .usage-5 {
+    display: flex;
+    gap: 14px;
+    margin: 0 -24px;
+    padding: 0 24px 4px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 24px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .landing .usage-5::-webkit-scrollbar { display: none; }
+  .landing .usage-6 { flex: 0 0 82%; scroll-snap-align: start; }
+}
+
+/* ---- Offres : Enterprise et Team en carrousel horizontal sur mobile, Agency en retrait dessous ---- */
+@media (max-width: 759px) {
+  .landing .ld-offers {
+    display: flex;
+    gap: 14px;
+    margin: 0 -24px;
+    padding: 4px 24px 32px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 24px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .landing .ld-offers::-webkit-scrollbar { display: none; }
+  .landing .ld-offers > * { flex: 0 0 84%; scroll-snap-align: start; box-sizing: border-box; }
+  .landing .offres-3, .landing .offres-13 { padding: 24px; }
+  /* Agency : bloc discret, sans cadre appuyé ni bouton plein */
+  .landing .offres-20 { padding: 18px; gap: 12px; border-width: 1px; border-style: dashed; background: transparent; }
+  .landing .offres-20 .offres-4 { font-size: 17px; }
+  .landing .offres-20 .offres-8 { font-size: 14.5px; }
+  .landing .offres-22 { font-size: 14.5px; gap: 6px; }
+  .landing .offres-23 { min-height: 44px; padding: 0; border: 0; border-radius: 0; text-decoration: underline; text-underline-offset: 3px; }
+}
+
+/* ---- Comparatif mobile : la réponse Layerdoc d'abord, les concurrents en comparaison discrète dessous ---- */
+@media (max-width: 759px) {
+  .landing .cmp-14 { gap: 12px; }
+  .landing .cmp-15 {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 10px 14px;
+    padding: 16px;
+  }
+  .landing .cmp-16 { grid-column: 1 / -1; font-size: 15.5px; }
+  .landing .cmp-19 {
+    grid-column: 1 / -1;
+    order: 1;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 12px;
+    font-size: 16px;
+    border: 1px solid var(--lavande-line);
+  }
+  .landing .cmp-20 { flex: none; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+  .landing .cmp-19 > span:last-child { text-align: right; }
+  .landing .cmp-17 { order: 2; flex-direction: column; gap: 2px; font-size: 14px; }
+  .landing .cmp-18 { flex: none; font-size: 11.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+}
