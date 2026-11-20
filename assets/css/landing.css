@@ -2807,6 +2807,7 @@ button[type="submit"][disabled] { opacity: 0.65; cursor: wait; }
 @media (max-width: 640px) {
   .ld-sec { padding-top: 56px !important; padding-bottom: 56px !important; }
   .ld-sec-grid { grid-template-columns: minmax(0, 1fr); }
+  .ld-hide-mobile { display: none; }
   .ld-hero-cta { flex-direction: column; align-self: stretch; }
   .ld-hero-cta a { justify-content: center; box-sizing: border-box; }
   /* Illustrations des fonctionnalités : cadre resserré pour laisser plus de place à la maquette réduite */
