@@ -2778,10 +2778,6 @@ details[open] > summary .chev { transform: rotate(45deg); }
 button[type="submit"][disabled] { opacity: 0.65; cursor: wait; }
 
 @media (max-width: 1040px) {
-  .ld-screen { aspect-ratio: auto; }
-  .ld-page { max-width: none !important; }
-  .ld-float-card { position: static !important; width: auto !important; margin: 0 !important; }
-  .ld-float-btn, .ld-fade { display: none !important; }
   .ld-sec-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 860px) {
@@ -2800,9 +2796,9 @@ button[type="submit"][disabled] { opacity: 0.65; cursor: wait; }
   .ld-sec-grid { grid-template-columns: minmax(0, 1fr); }
   .ld-hero-cta { flex-direction: column; align-self: stretch; }
   .ld-hero-cta a { justify-content: center; box-sizing: border-box; }
-  .ld-mock-bar, .ld-mock-side { display: none !important; }
   /* Illustrations des fonctionnalités : cadre resserré pour laisser plus de place à la maquette réduite */
   .landing .fonct-14, .landing .fonct-94, .landing .fonct-121 { padding: 14px; }
+  .landing .prod-1 { padding-left: 12px; padding-right: 12px; }
 }
 /* Illustrations des fonctionnalités : rendues à la largeur desktop, puis réduites par main.js (propriété zoom) */
 .landing [data-ill-scaled] { max-width: none; flex: none; box-sizing: border-box; }

@@ -50,31 +50,33 @@
     });
   }
 
-  /* ---------- Illustrations des fonctionnalités : proportions desktop conservées sur mobile ----------
-     Chaque maquette est rendue à sa largeur desktop (579 px) puis réduite pour tenir dans son cadre. */
-  var ILL_WIDTH = 579;
-  var ills = document.querySelectorAll(".fonct-14 > [role=img], .fonct-94 > [role=img], .fonct-121 > .vision-7");
+  /* ---------- Illustrations : proportions desktop conservées sur mobile ----------
+     Chaque maquette est rendue à sa largeur desktop puis réduite (zoom) pour tenir dans son cadre. */
+  var ILLS = [
+    { sel: ".fonct-14 > [role=img], .fonct-94 > [role=img], .fonct-121 > .vision-7", width: 579 },
+    { sel: ".prod-2", width: 1120 }
+  ];
   function scaleIllustrations() {
-    Array.prototype.forEach.call(ills, function (el) {
-      var card = el.parentNode;
-      var cs = window.getComputedStyle(card);
-      var avail = card.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
-      if (avail > 0 && avail < ILL_WIDTH) {
-        el.setAttribute("data-ill-scaled", "");
-        el.style.width = ILL_WIDTH + "px";
-        el.style.zoom = String(avail / ILL_WIDTH);
-      } else {
-        el.removeAttribute("data-ill-scaled");
-        el.style.width = "";
-        el.style.zoom = "";
-      }
+    ILLS.forEach(function (group) {
+      Array.prototype.forEach.call(document.querySelectorAll(group.sel), function (el) {
+        var card = el.parentNode;
+        var cs = window.getComputedStyle(card);
+        var avail = card.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+        if (avail > 0 && avail < group.width) {
+          el.setAttribute("data-ill-scaled", "");
+          el.style.width = group.width + "px";
+          el.style.zoom = String(avail / group.width);
+        } else {
+          el.removeAttribute("data-ill-scaled");
+          el.style.width = "";
+          el.style.zoom = "";
+        }
+      });
     });
   }
-  if (ills.length) {
-    scaleIllustrations();
-    window.addEventListener("resize", scaleIllustrations);
-    window.addEventListener("load", scaleIllustrations);
-  }
+  scaleIllustrations();
+  window.addEventListener("resize", scaleIllustrations);
+  window.addEventListener("load", scaleIllustrations);
 
   /* ---------- Boutons d'action : mène au formulaire, préremplit le motif et le message ---------- */
   var form = document.getElementById("contact-form");
