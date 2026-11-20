@@ -2831,4 +2831,20 @@ button[type="submit"][disabled] { opacity: 0.65; cursor: wait; }
 .landing .accomp-choice-text { display: flex; flex-direction: column; gap: 6px; }
 .landing .accomp-choice-sub { margin: 0; color: var(--slate); font-size: 15.5px; }
 .landing .accomp-cta { margin-top: 0; justify-content: flex-start; }
-@media (max-width: 640px) { .landing .accomp-cta { align-self: stretch; } }
+@media (max-width: 640px) {
+  .landing .accomp-cta { align-self: stretch; }
+  /* Étapes : carrousel à défilement horizontal (la carte suivante dépasse pour inviter au scroll) */
+  .landing .accomp-steps {
+    display: flex;
+    gap: 14px;
+    margin: 0 -24px;
+    padding: 0 24px 4px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 24px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .landing .accomp-steps::-webkit-scrollbar { display: none; }
+  .landing .accomp-card { flex: 0 0 82%; scroll-snap-align: start; padding: 22px; }
+}
