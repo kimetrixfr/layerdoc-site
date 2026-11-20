@@ -22,12 +22,15 @@
     refreshBar();
   }
 
-  /* Barre d'action collante : visible sur mobile, masquée sur le formulaire ou quand le menu est ouvert. */
+  /* Barre d'action collante : visible sur mobile une fois le hero passé ; masquée sur le formulaire ou quand le menu est ouvert. */
+  var hero = document.getElementById("top");
+  var hasIO = "IntersectionObserver" in window;
   var formVisible = false;
+  var heroVisible = !!(hero && hasIO); // masquée dès le chargement, l'observateur corrige ensuite
   function refreshBar() {
     if (!bar) return;
     var menuOpen = header && header.classList.contains("is-open");
-    bar.classList.toggle("is-hidden", formVisible || menuOpen);
+    bar.classList.toggle("is-hidden", heroVisible || formVisible || menuOpen);
     document.body.classList.toggle("has-ld-bar", narrow.matches);
   }
   if (bar && formSection && "IntersectionObserver" in window) {
@@ -35,6 +38,12 @@
       formVisible = entries[entries.length - 1].isIntersecting;
       refreshBar();
     }).observe(formSection);
+  }
+  if (hero && hasIO) {
+    new IntersectionObserver(function (entries) {
+      heroVisible = entries[entries.length - 1].isIntersecting;
+      refreshBar();
+    }).observe(hero);
   }
   onChange(narrow, function () { if (!narrow.matches) setMenu(false); refreshBar(); });
   refreshBar();
