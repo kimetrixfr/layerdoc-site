@@ -2737,6 +2737,19 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px
 .ld-burger, .ld-bar { display: none; }
 .ld-menu { display: none; border-top: 1px solid var(--line); background: rgba(251, 251, 253, 0.97); }
 .ld-header.is-open .ld-menu { display: block; }
+/* Menu mobile : panneau posé par-dessus la page (le header sticky sert de repère), sans décaler le contenu */
+.ld-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: calc(100vh - 64px);
+  max-height: calc(100dvh - 64px);
+  overflow-y: auto;
+  background: var(--white, #fff);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 24px 40px -20px rgba(26, 24, 48, 0.35);
+}
 .ld-burger[aria-expanded="false"] .ld-burger-close, .ld-burger[aria-expanded="true"] .ld-burger-open { display: none; }
 @media (max-width: 900px) {
   .ld-nav-desk, .ld-actions-desk { display: none !important; }
