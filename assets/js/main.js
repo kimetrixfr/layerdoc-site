@@ -50,6 +50,32 @@
     });
   }
 
+  /* ---------- Illustrations des fonctionnalités : proportions desktop conservées sur mobile ----------
+     Chaque maquette est rendue à sa largeur desktop (579 px) puis réduite pour tenir dans son cadre. */
+  var ILL_WIDTH = 579;
+  var ills = document.querySelectorAll(".fonct-14 > [role=img], .fonct-94 > [role=img], .fonct-121 > .vision-7");
+  function scaleIllustrations() {
+    Array.prototype.forEach.call(ills, function (el) {
+      var card = el.parentNode;
+      var cs = window.getComputedStyle(card);
+      var avail = card.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      if (avail > 0 && avail < ILL_WIDTH) {
+        el.setAttribute("data-ill-scaled", "");
+        el.style.width = ILL_WIDTH + "px";
+        el.style.zoom = String(avail / ILL_WIDTH);
+      } else {
+        el.removeAttribute("data-ill-scaled");
+        el.style.width = "";
+        el.style.zoom = "";
+      }
+    });
+  }
+  if (ills.length) {
+    scaleIllustrations();
+    window.addEventListener("resize", scaleIllustrations);
+    window.addEventListener("load", scaleIllustrations);
+  }
+
   /* ---------- Boutons d'action : mène au formulaire, préremplit le motif et le message ---------- */
   var form = document.getElementById("contact-form");
   var message = document.getElementById("message");

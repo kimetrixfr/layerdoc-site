@@ -2801,10 +2801,11 @@ button[type="submit"][disabled] { opacity: 0.65; cursor: wait; }
   .ld-hero-cta { flex-direction: column; align-self: stretch; }
   .ld-hero-cta a { justify-content: center; box-sizing: border-box; }
   .ld-mock-bar, .ld-mock-side { display: none !important; }
-  /* Illustration « ajouter un bloc » : titre réduit, barre d'actions dans le flux (sinon elle chevauche le titre) */
-  .landing .ld-ill-title { font-size: 24px; }
-  .landing .ld-ill-toolbar { position: static; margin-top: 8px; display: flex; }
+  /* Illustrations des fonctionnalités : cadre resserré pour laisser plus de place à la maquette réduite */
+  .landing .fonct-14, .landing .fonct-94, .landing .fonct-121 { padding: 14px; }
 }
+/* Illustrations des fonctionnalités : rendues à la largeur desktop, puis réduites par main.js (propriété zoom) */
+.landing [data-ill-scaled] { max-width: none; flex: none; box-sizing: border-box; }
 @media (prefers-reduced-motion: reduce) {
   .ld-btn, .ld-link, .ld-header { transition: none; }
   .ld-btn:hover { transform: none; }
